@@ -137,10 +137,10 @@ export default function AddProfile() {
           <Input label="Education" value={profile.education} onChange={(v) => handleChange("education", v)} />
           <Input label="College" value={profile.college} onChange={(v) => handleChange("college", v)} />
           <Input label="Income Range" value={profile.income_range} onChange={(v) => handleChange("income_range", v)} />
-          <Input label="Mother Tongue" value={profile.mother_tongue} onChange={(v) => handleChange("mother_tongue", v)} />
+
+          
           <Input label="Religion" value={profile.religion} onChange={(v) => handleChange("religion", v)} />
-          <Input label="Family Status" value={profile.family_status} onChange={(v) => handleChange("family_status", v)} />
-          <Input label="Diet" value={profile.diet} onChange={(v) => handleChange("diet", v)} />
+
 
           <button
             type="submit"

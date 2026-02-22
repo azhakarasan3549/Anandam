@@ -21,12 +21,6 @@ export default function ProfileCard({ profiles = []}) {
                   className="w-full h-72 object-cover rounded-t-2xl"
                 />
 
-                {profile.verified && (
-                  <div className="absolute top-3 left-3 bg-white px-2 py-1 rounded-full flex items-center gap-1 text-xs shadow">
-                    <CheckCircle className="w-4 h-4 text-blue-500" />
-                    VERIFIED
-                  </div>
-                )}
 
                 <button className="absolute top-3 right-3 bg-white p-2 rounded-full shadow">
                   <Heart className="w-4 h-4 text-pink-600" />
@@ -46,9 +40,6 @@ export default function ProfileCard({ profiles = []}) {
                 <div className="flex flex-wrap gap-2 mb-3">
                   <span className="bg-gray-100 text-xs px-3 py-1 rounded-full">
                     {profile.height}
-                  </span>
-                  <span className="bg-gray-100 text-xs px-3 py-1 rounded-full">
-                    {profile.marital}
                   </span>
                   <span className="bg-gray-100 text-xs px-3 py-1 rounded-full">
                     {profile.religion}

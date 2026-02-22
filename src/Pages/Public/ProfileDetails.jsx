@@ -93,7 +93,6 @@ export default function ProfileDetails() {
             <h1 className="text-xl font-bold">
               {profile.name}, {profile.age}
             </h1>
-            <p className="text-sm text-pink-600">{profile.active}</p>
             <p className="text-sm text-gray-500">📍 {profile.city}</p>
           </div>
 
@@ -104,7 +103,7 @@ export default function ProfileDetails() {
 
         {/* TAGS */}
         <div className="flex flex-wrap gap-2 mt-4">
-          {[profile.height, profile.marital, profile.languages].map((item, i) => (
+          {[profile.height,  profile.languages].map((item, i) => (
             <span key={i} className="bg-gray-100 px-3 py-1 rounded-full text-sm">
               {item}
             </span>
@@ -115,7 +114,7 @@ export default function ProfileDetails() {
         <Section title="Professional & Education">
           <Item icon="💼" title={profile.profession} sub={profile.company} />
           <Item icon="🎓" title={profile.education} sub={profile.college} />
-          <Item icon="💰" title={profile.income} sub="Annual Income" />
+          <Item icon="💰" title={profile.income_range} sub="Annual Income" />
         </Section>
 
         {/* FAMILY */}
