@@ -19,11 +19,11 @@ export default function AddProfile() {
     education: "",
     college: "",
     income_range: "",
-    mother_tongue: "",
     religion: "",
-    family_status: "",
-    diet: "",
     photo_url: "",
+    zodiac_sign:"",
+    star:"",
+    lagna:"",
   };
 
   const [profile, setProfile] = useState(initialProfile);
@@ -137,9 +137,10 @@ export default function AddProfile() {
           <Input label="Education" value={profile.education} onChange={(v) => handleChange("education", v)} />
           <Input label="College" value={profile.college} onChange={(v) => handleChange("college", v)} />
           <Input label="Income Range" value={profile.income_range} onChange={(v) => handleChange("income_range", v)} />
-
-          
           <Input label="Religion" value={profile.religion} onChange={(v) => handleChange("religion", v)} />
+          <Input label="zodiac sign" value={profile.zodiac_sign} onChange={(v) => handleChange("zodiac_sign", v)} />
+          <Input label="star" value={profile.star} onChange={(v) => handleChange("star", v)} />
+          <Input label="lagna" value={profile.lagna} onChange={(v) => handleChange("lagna", v)} />
 
 
           <button

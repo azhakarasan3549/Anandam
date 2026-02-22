@@ -119,10 +119,10 @@ export default function ProfileDetails() {
 
         {/* FAMILY */}
         <Section title="Family & Lifestyle">
-          <KeyValue label="Mother Tongue" value={profile.motherTongue} />
           <KeyValue label="Religion / Caste" value={profile.religion} />
-          <KeyValue label="Family Status" value={profile.familyStatus} />
-          <KeyValue label="Diet" value={profile.diet} />
+          <KeyValue label="Zodiac_sign" value={profile.zodiac_sign} />
+          <KeyValue label="Star" value={profile.star} />
+          <KeyValue label="Lagnam" value={profile.lagna} />
         </Section>
 
         {/* WHATSAPP CARD */}

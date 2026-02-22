@@ -44,6 +44,12 @@ export default function ProfileCard({ profiles = []}) {
                   <span className="bg-gray-100 text-xs px-3 py-1 rounded-full">
                     {profile.religion}
                   </span>
+                  <span className="bg-gray-100 text-xs px-3 py-1 rounded-full">
+                    {profile.zodiac_sign}
+                  </span>
+                  <span className="bg-gray-100 text-xs px-3 py-1 rounded-full">
+                    {profile.star}
+                  </span>
                 </div>
 
                 <div className="flex justify-between items-center">

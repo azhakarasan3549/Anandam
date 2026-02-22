@@ -6,9 +6,19 @@ export default function AdminProfiles() {
   const [profiles, setProfiles] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // 🔐 Check admin login..
   useEffect(() => {
+       const checkAdmin = async () => {
+      const { data } = await supabase.auth.getSession();
+      if (!data.session) {
+        navigate("/admin-login");
+      }
+    };
+    checkAdmin();
     fetchProfiles();
   }, []);
+  
+
 
   const fetchProfiles = async () => {
     const { data } = await supabase.from("profiles").select("*");
