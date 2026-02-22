@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+
+body {  
+    /* background-color: rgb(203, 73, 73); */
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
+.Toastify__toast-container {
+  z-index: 999999 !important;
+}
