@@ -5,13 +5,14 @@ import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
 
 import App from "./App.jsx";
+import UserContext from "./Context/UserContext.jsx";
 
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <Usercontext>
+    <UserContext>
       <App />
-    </Usercontext>
+    </UserContext>
 
     <ToastContainer position="top-right" autoClose={3000} />
   </BrowserRouter>
