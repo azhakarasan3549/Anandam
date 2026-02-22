@@ -9,7 +9,7 @@ export default function Navbar() {
           <Link to="/" className="hover:underline">Home</Link>
           <Link to={"/Profile"} className="hover:underline">Profiles</Link>
           <Link to={"/Contact"} className="hover:underline">Contact</Link>
-          <Link to={"/admin-login"} className="hover:underline hidden">Adminlogin</Link>
+          <Link to={"/admin-login"} className="hover:underline ">Adminlogin</Link>
 
         </div>
       </div>
