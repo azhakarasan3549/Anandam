@@ -20,7 +20,6 @@ export default function App() {
       <Route path="/contact" element={<Contact />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/profiledetails/:id" element={<ProfileDetails />} />
-
       <Route path="/admin-login" element={<AdminLogin />} />
 
       <Route
