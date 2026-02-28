@@ -2,7 +2,7 @@ export default function WhatsAppButton({ profileId }) {
 
   const handleWhatsApp = () => {
     // Your website profile link
-    const profileLink = `${window.location.origin}/profile/${profileId}`;
+    const profileLink = `${window.location.origin}/profiledetails/${profileId}`;
 
     const message = `
 Hello Admin,

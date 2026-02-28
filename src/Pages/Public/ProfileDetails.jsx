@@ -135,7 +135,9 @@ export default function ProfileDetails() {
             Contact our matrimonial concierge on WhatsApp for full details.
           </p>
 
-          <WhatsAppButton profileId={profile.id} fullWidth />
+          <div className="flex justify-center">
+            <WhatsAppButton profileId={profile.id} />
+          </div>
         </div>
       </div>
     </div>
