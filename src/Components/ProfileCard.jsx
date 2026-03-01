@@ -4,18 +4,18 @@ import WhatsAppButton from "./WhatsAppButton.jsx";
 
 export default function ProfileCard({ profiles = [] }) {
   return (
-    <div className="w-full px-1 py-4">
+    <div className="w-full px-2 py-4">
       {profiles.map((profile) => (
         <div
           key={profile.id}
-          className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 mb-6 overflow-hidden"
+          className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 mb-1 overflow-hidden"
         >
           {/* Image */}
           <div className="relative">
             <img
               src={profile.photo_url}
               alt={profile.name}
-              className="w-full h-32 object-cover"
+              className="w-full h-48 object-cover"
             />
 
             {/* Heart Button */}
@@ -25,7 +25,7 @@ export default function ProfileCard({ profiles = [] }) {
           </div>
 
           {/* Content */}
-          <div className="p-4">
+          <div className="p-2">
             <h3 className="font-semibold text-sm">
               {profile.name}, {profile.age}
             </h3>
@@ -35,7 +35,7 @@ export default function ProfileCard({ profiles = [] }) {
             </p>
 
             {/* Tags */}
-            <div className="flex flex-wrap gap-2 mb-4">
+            <div className="flex flex-wrap gap-2 mb-2">
               <span className="bg-gray-100 text-xs px-3 py-1 rounded-full">
                 {profile.religion}
               </span>
@@ -45,7 +45,7 @@ export default function ProfileCard({ profiles = [] }) {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex gap-2 mt-3">
+            <div className="flex gap-2 mt-3 mb-1">
               <Link
                 to={`/profiledetails/${profile.id}`}
                 className="flex-1 text-center border border-b-emerald-500 text-emerald-500 text-xs font-medium py-2 rounded-lg hover:bg-emerald-50 transition"
