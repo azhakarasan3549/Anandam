@@ -84,10 +84,10 @@ export default function Carousel() {
 
           {/* Swiper for each title */}
           <Swiper
-            modules={[ Pagination, Autoplay]}
-            spaceBetween={10}
+            modules={[ Autoplay]}
+            spaceBetween={5}
             slidesPerView={1.6}
-            pagination={{ clickable: true }}
+           
             breakpoints={{
               640: { slidesPerView: 1 },
               768: { slidesPerView: 2 },
