@@ -15,7 +15,7 @@ export default function ProfileCard({ profiles = [] }) {
             <img
               src={profile.photo_url}
               alt={profile.name}
-              className="w-full h-44 object-cover"
+              className="w-full h-32 object-cover"
             />
 
             {/* Heart Button */}
