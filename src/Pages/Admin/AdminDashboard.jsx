@@ -92,14 +92,17 @@ const deleteProfile = async (id, photo_url) => {
           Logout
         </button>
       </div>
-
-      {/* Add Profile Button */}
-      <Link
-        to="/admin/addprofile"
-        className="inline-block bg-blue-600 text-white px-4 py-2 rounded mt-4"
-      >
+      <div className="flex justify-evenly">
+        {/* Add Profile Button */}
+              <Link
+        to="/admin/addprofile"  className="  bg-blue-600 text-white px-4 py-2 rounded mt-4" >
         ➕ Add Profile
       </Link>
+     
+            <Link to="/admin/carousel" className=" bg-emerald-600 text-white px-4 py-2 rounded mt-4" >
+          🎠 Manage Carousel
+        </Link>
+      </div>
 
       {/* Profiles Table */}
      <AdminProfiles/>
