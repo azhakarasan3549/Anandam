@@ -15,7 +15,7 @@ export default function ProfileCard({ profiles = [] }) {
             <img
               src={profile.photo_url}
               alt={profile.name}
-              className="w-full h-48 object-cover"
+              className="w-full h-56 object-cover"
             />
 
             {/* Heart Button */}
@@ -53,7 +53,7 @@ export default function ProfileCard({ profiles = [] }) {
                 View Details
               </Link>
 
-            
+            <Link> <WhatsAppButton profileId={profile.id} /></Link>
             </div>
           </div>
         </div>
