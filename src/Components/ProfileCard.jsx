@@ -45,7 +45,7 @@ export default function ProfileCard({ profiles = [] }) {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex gap-2 mt-3 mb-1">
+            <div className="flex gap-2 mt-3 mb-0.5">
               <Link
                 to={`/profiledetails/${profile.id}`}
                 className="flex-1 text-center border border-b-emerald-500 text-emerald-500 text-xs font-medium py-2 rounded-lg hover:bg-emerald-50 transition"
@@ -53,7 +53,7 @@ export default function ProfileCard({ profiles = [] }) {
                 View Details
               </Link>
 
-            <Link> <WhatsAppButton profileId={profile.id} /></Link>
+            <Link className="mt-1"> <WhatsAppButton profileId={profile.id} /></Link>
             </div>
           </div>
         </div>
