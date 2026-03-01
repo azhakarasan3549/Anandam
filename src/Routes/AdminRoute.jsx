@@ -4,24 +4,24 @@ import supabase from "../DB/Supabaseclient";
 
 export default function AdminRoute({ children }) {
   const [loading, setLoading] = useState(true);
-  const [session, setSession] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      setSession(data.session);
+    const checkAdmin = async () => {
+      const { data } = await supabase.auth.getSession();
+      const user = data.session?.user;
+
+      if (user?.user_metadata?.role === "admin") {
+        setIsAdmin(true);
+      }
+
       setLoading(false);
-    });
+    };
+
+    checkAdmin();
   }, []);
 
-  if (loading) return <p>Checking Admin...</p>;
+  if (loading) return <p>Loading...</p>;
 
-  // Not logged in
-  if (!session) return <Navigate to="/admin-login" />;
-
-  // Check role
-  if (session.user.user_metadata?.role !== "admin") {
-    return <Navigate to="/" />;
-  }
-
-  return children;
+  return isAdmin ? children : <Navigate to="/" />;
 }

@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
 
 import App from "./App.jsx";
-import UserContext from "./Context/UserContext.jsx";
+import UserContext from "./context/UserContext.jsx";
 
 
 createRoot(document.getElementById("root")).render(
