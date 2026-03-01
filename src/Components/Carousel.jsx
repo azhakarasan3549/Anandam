@@ -74,19 +74,19 @@ export default function Carousel() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-10 space-y-12">
+    <div className="max-w-3xl mx-auto px-2 py-10 space-y-12">
       {titles.map((title) => (
         <div key={title}>
           {/* Title */}
-          <h2 className="text-2xl font-bold mb-6 text-center">
+          <h2 className="text-lg font-bold mb-6 text-center">
             {title}
           </h2>
 
           {/* Swiper for each title */}
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
-            spaceBetween={20}
-            slidesPerView={1}
+            spaceBetween={2}
+            slidesPerView={2}
             navigation
             pagination={{ clickable: true }}
             breakpoints={{

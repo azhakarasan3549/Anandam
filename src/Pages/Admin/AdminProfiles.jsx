@@ -56,7 +56,7 @@ export default function AdminProfiles() {
               <th className="p-3 text-left">Photo</th>
               <th className="p-3 text-left">Name</th>
               <th className="p-3 text-center hidden sm:table-cell">Age</th>
-              <th className="p-3 hidden sm:table-cell">City</th>
+              <th className="p-3 hidden sm:table-cell">ID</th>
               <th className="p-3 text-center">Action</th>
             </tr>
           </thead>
@@ -87,7 +87,7 @@ export default function AdminProfiles() {
 
                 {/* City */}
                 <td className="p-3 hidden sm:table-cell">
-                  {p.city}
+                  {p.id}
                 </td>
 
                 {/* Actions */}
