@@ -4,7 +4,7 @@ import WhatsAppButton from "./WhatsAppButton.jsx";
 
 export default function ProfileCard({ profiles = [] }) {
   return (
-    <div className="w-full px-2 py-4">
+    <div className="w-full px-1 py-4">
       {profiles.map((profile) => (
         <div
           key={profile.id}
