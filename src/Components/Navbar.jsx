@@ -130,7 +130,7 @@ export default function Navbar() {
 
       {/* Side Panel */}
       <div
-        className={`fixed top-4 right-0 w-4/5 max-w-sm h-[75vh] bg-white text-gray-900 z-50 shadow-2xl rounded-l-3xl md:hidden overflow-hidden transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-4 right-0 w-4/5 max-w-sm h-[50vh] bg-white text-gray-900 z-50 shadow-2xl rounded-l-3xl md:hidden overflow-hidden transform transition-transform duration-300 ease-in-out ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
