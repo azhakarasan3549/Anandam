@@ -27,7 +27,7 @@ export default function Navbar() {
   return (
     <>
       {/* ================= NAVBAR ================= */}
-      <nav className="bg-pink-600 text-white fixed top-0 left-0 w-full z-50 shadow-md h-[72px]">
+      <nav className="bg-pink-600 text-white fixed top-0 left-0 w-full z-50 shadow-md h-18">
         <div className="max-w-7xl mx-auto flex justify-between items-center px-6 h-full">
           
           <h1 className="text-xl font-bold tracking-tight">
@@ -115,8 +115,8 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Space Below Fixed Navbar */}
-      <div className="h-[72px]"></div>
+
+   
 
       {/* ================= MOBILE MENU ================= */}
 
@@ -130,7 +130,7 @@ export default function Navbar() {
 
       {/* Side Panel */}
       <div
-        className={`fixed top-4 right-0 w-4/5 max-w-sm h-[80vh] bg-white text-gray-900 z-50 shadow-2xl rounded-l-3xl md:hidden overflow-hidden transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-4 right-0 w-4/5 max-w-sm h-[75vh] bg-white text-gray-900 z-50 shadow-2xl rounded-l-3xl md:hidden overflow-hidden transform transition-transform duration-300 ease-in-out ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
