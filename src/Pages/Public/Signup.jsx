@@ -13,6 +13,8 @@ export default function Signup() {
     confirm: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -24,7 +26,9 @@ export default function Signup() {
       return;
     }
 
-    const { data, error } = await supabase.auth.signUp({
+    setLoading(true);
+
+    const { error } = await supabase.auth.signUp({
       email: form.email,
       password: form.password,
       options: {
@@ -37,6 +41,7 @@ export default function Signup() {
 
     if (error) {
       toast.error(error.message);
+      setLoading(false);
       return;
     }
 
@@ -45,7 +50,7 @@ export default function Signup() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <form
         onSubmit={handleSignup}
         className="bg-white p-6 rounded shadow w-96 space-y-4"
@@ -56,6 +61,7 @@ export default function Signup() {
           name="name"
           placeholder="Full Name"
           onChange={handleChange}
+          disabled={loading}
           className="w-full border p-2 rounded"
           required
         />
@@ -65,6 +71,7 @@ export default function Signup() {
           type="email"
           placeholder="Email"
           onChange={handleChange}
+          disabled={loading}
           className="w-full border p-2 rounded"
           required
         />
@@ -74,6 +81,7 @@ export default function Signup() {
           type="password"
           placeholder="Password"
           onChange={handleChange}
+          disabled={loading}
           className="w-full border p-2 rounded"
           required
         />
@@ -83,16 +91,25 @@ export default function Signup() {
           type="password"
           placeholder="Confirm Password"
           onChange={handleChange}
+          disabled={loading}
           className="w-full border p-2 rounded"
           required
         />
 
-        <button className="w-full bg-pink-600 text-white p-2 rounded">
-          Sign Up
+        <button
+          disabled={loading}
+          className={`w-full p-2 rounded text-white ${
+            loading ? "bg-gray-400" : "bg-pink-600"
+          }`}
+        >
+          {loading ? "Creating account..." : "Sign Up"}
         </button>
 
         <p className="text-sm text-center">
-          Already have account? <Link to="/login">Login</Link>
+          Already have account?{" "}
+          <Link to="/login" className="text-pink-600">
+            Login
+          </Link>
         </p>
       </form>
     </div>
