@@ -20,10 +20,10 @@ export default function AddProfile() {
     college: "",
     income_range: "",
     religion: "",
-    photo_url: "",
     zodiac_sign: "",
     star: "",
     lagna: "",
+    photo_url: "",
   };
 
   const [profile, setProfile] = useState(initialProfile);
@@ -32,7 +32,10 @@ export default function AddProfile() {
   const [loading, setLoading] = useState(false);
 
   const handleChange = (field, value) => {
-    setProfile((prev) => ({ ...prev, [field]: value }));
+    setProfile((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
   };
 
   const handleImageChange = (e) => {
@@ -68,7 +71,7 @@ export default function AddProfile() {
         photoUrl = data.publicUrl;
       }
 
-      // Insert data
+      // Insert profile
       const { error } = await supabase.from("profiles").insert({
         ...profile,
         photo_url: photoUrl,
@@ -78,9 +81,11 @@ export default function AddProfile() {
 
       toast.success("Profile saved successfully 🎉");
 
+      // Reset form
       setProfile(initialProfile);
       setImageFile(null);
       setImagePreview(null);
+
     } catch (err) {
       console.error(err);
       toast.error(err.message || "Something went wrong");
@@ -92,27 +97,22 @@ export default function AddProfile() {
   return (
     <div className="min-h-screen bg-pink-50">
 
-      {/* HEADER */}
-      <div className="sticky top-0 z-50 flex items-center justify-between bg-white px-4 py-4 shadow-sm">
+      {/* Top Bar */}
+      <div className="flex items-center gap-3 px-4 py-4 bg-white shadow-sm">
         <ArrowLeft
           className="w-5 h-5 cursor-pointer"
           onClick={() => navigate(-1)}
         />
-
-        <h1 className="text-lg font-semibold absolute left-1/2 -translate-x-1/2">
-          Add New Profile
-        </h1>
+        <h2 className="text-lg font-semibold">Add New Profile</h2>
       </div>
 
-      {/* FORM */}
       <form
         onSubmit={handleSubmit}
-        className="max-w-xl mx-auto px-4 py-6 space-y-5 pb-20"
+        className="px-4 py-6 space-y-5"
       >
 
-        {/* IMAGE UPLOAD */}
+        {/* Image Upload */}
         <label className="block border-2 border-dashed border-pink-300 rounded-2xl p-6 text-center cursor-pointer bg-white">
-
           <input
             type="file"
             accept="image/*"
@@ -123,7 +123,7 @@ export default function AddProfile() {
           {imagePreview ? (
             <img
               src={imagePreview}
-              alt="Preview"
+              alt="preview"
               className="mx-auto w-32 h-32 rounded-xl object-cover"
             />
           ) : (
@@ -132,19 +132,25 @@ export default function AddProfile() {
                 <Camera className="text-pink-600" />
               </div>
 
-              <h3 className="mt-3 font-semibold">Upload Profile Photo</h3>
-              <p className="text-xs text-gray-500">PNG, JPG or JPEG</p>
+              <h3 className="mt-3 font-semibold">
+                Upload Profile Photo
+              </h3>
+
+              <p className="text-xs text-gray-500">
+                PNG, JPG or JPEG
+              </p>
             </>
           )}
         </label>
 
-        {/* BASIC DETAILS */}
+        {/* Name */}
         <Input
           label="Full Name"
           value={profile.name}
           onChange={(v) => handleChange("name", v)}
         />
 
+        {/* Age + Gender */}
         <TwoGrid>
           <Input
             label="Age"
@@ -155,20 +161,20 @@ export default function AddProfile() {
 
           <Select
             label="Gender"
-            value={profile.gender}
             options={["Male", "Female"]}
+            value={profile.gender}
             onChange={(v) => handleChange("gender", v)}
           />
         </TwoGrid>
 
+        {/* City */}
         <IconInput
           label="City"
-          value={profile.city}
           icon={<MapPin className="w-4 h-4 text-gray-400" />}
+          value={profile.city}
           onChange={(v) => handleChange("city", v)}
         />
 
-        {/* PERSONAL */}
         <Input
           label="Height"
           value={profile.height}
@@ -181,7 +187,6 @@ export default function AddProfile() {
           onChange={(v) => handleChange("languages", v)}
         />
 
-        {/* PROFESSIONAL */}
         <Input
           label="Profession"
           value={profile.profession}
@@ -212,7 +217,6 @@ export default function AddProfile() {
           onChange={(v) => handleChange("income_range", v)}
         />
 
-        {/* RELIGION */}
         <Input
           label="Religion"
           value={profile.religion}
@@ -237,7 +241,7 @@ export default function AddProfile() {
           onChange={(v) => handleChange("lagna", v)}
         />
 
-        {/* SUBMIT */}
+        {/* Save Button */}
         <button
           type="submit"
           disabled={loading}
@@ -251,7 +255,7 @@ export default function AddProfile() {
   );
 }
 
-/* ---------- UI COMPONENTS ---------- */
+/* ---------- UI Components ---------- */
 
 function Input({ label, type = "text", value, onChange }) {
   return (
@@ -261,7 +265,7 @@ function Input({ label, type = "text", value, onChange }) {
       <input
         type={type}
         value={value}
-        className="w-full mt-1 px-3 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-300"
+        className="w-full mt-1 px-3 py-2 border rounded-xl"
         onChange={(e) => onChange(e.target.value)}
       />
     </div>
@@ -275,7 +279,7 @@ function Select({ label, options, value, onChange }) {
 
       <select
         value={value}
-        className="w-full mt-1 px-3 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-300"
+        className="w-full mt-1 px-3 py-2 border rounded-xl"
         onChange={(e) => onChange(e.target.value)}
       >
         <option value="">Select</option>
@@ -289,7 +293,11 @@ function Select({ label, options, value, onChange }) {
 }
 
 function TwoGrid({ children }) {
-  return <div className="grid grid-cols-2 gap-4">{children}</div>;
+  return (
+    <div className="grid grid-cols-2 gap-4">
+      {children}
+    </div>
+  );
 }
 
 function IconInput({ label, icon, value, onChange }) {
@@ -298,11 +306,13 @@ function IconInput({ label, icon, value, onChange }) {
       <label className="text-sm font-medium">{label}</label>
 
       <div className="relative mt-1">
-        <span className="absolute left-3 top-3">{icon}</span>
+        <span className="absolute left-3 top-3">
+          {icon}
+        </span>
 
         <input
           value={value}
-          className="w-full pl-9 pr-3 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-300"
+          className="w-full pl-9 pr-3 py-2 border rounded-xl"
           onChange={(e) => onChange(e.target.value)}
         />
       </div>
