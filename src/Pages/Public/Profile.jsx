@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import supabase from "../../DB/Supabaseclient.js";
 import LandscapeCard from "../../Components/LandscapeCard.jsx";
 import SkeletonLoader from "../../Components/SkeletonLoader.jsx";
-import Header from "../../Components/Header.jsx";
+import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 
 export default function Profile() {
+  const navigate = useNavigate();
 
   const [profiles, setProfiles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -37,72 +39,73 @@ export default function Profile() {
   if (loading) return <SkeletonLoader />;
 
   return (
-    <div className="min-h-screen bg-gray-50 overflow-y-auto">
+    <div className="min-h-screen bg-gray-50 px-4 py-6">
 
-      <Header title="Browse Profiles" />
+      {/* Top Bar */}
+      <div className="flex items-center gap-3 mb-6">
+        <ArrowLeft
+          className="w-5 h-5 cursor-pointer"
+          onClick={() => navigate(-1)}
+        />
+        <h2 className="text-lg font-semibold">Browse Profiles</h2>
+      </div>
 
-      <div className="px-4 py-6">
+      {/* Search */}
+      <div className="flex items-center gap-3 mb-4">
+        <input
+          type="text"
+          placeholder="Search name..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="flex-1 border px-3 py-2 rounded-lg"
+        />
 
-        {/* Search */}
+        <button
+          onClick={() => setShowMore(!showMore)}
+          className="px-3 py-2 bg-gray-100 rounded-lg"
+        >
+          ⚙️
+        </button>
+      </div>
+
+      {/* Filters */}
+      {showMore && (
         <div className="flex gap-3 mb-6">
 
+          <select
+            value={religion}
+            onChange={(e) => setReligion(e.target.value)}
+            className="border px-3 py-2 rounded-lg"
+          >
+            <option value="">Religion</option>
+            <option value="Hindu">Hindu</option>
+            <option value="Muslim">Muslim</option>
+            <option value="Christian">Christian</option>
+          </select>
+
           <input
-            type="text"
-            placeholder="Search name..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="flex-1 border px-3 py-2 rounded-lg"
+            type="number"
+            placeholder="Age"
+            value={age}
+            onChange={(e) => setAge(e.target.value)}
+            className="border px-3 py-2 rounded-lg w-24"
           />
 
-          <button
-            onClick={() => setShowMore(!showMore)}
-            className="px-3 py-2 bg-gray-100 rounded-lg"
-          >
-            ⚙️
-          </button>
-
         </div>
+      )}
 
-        {/* Filters */}
-        {showMore && (
-          <div className="flex gap-3 mb-6">
-
-            <select
-              value={religion}
-              onChange={(e) => setReligion(e.target.value)}
-              className="border px-3 py-2 rounded-lg"
-            >
-              <option value="">Religion</option>
-              <option value="Hindu">Hindu</option>
-              <option value="Muslim">Muslim</option>
-              <option value="Christian">Christian</option>
-            </select>
-
-            <input
-              type="number"
-              placeholder="Age"
-              value={age}
-              onChange={(e) => setAge(e.target.value)}
-              className="border px-3 py-2 rounded-lg w-24"
-            />
-
-          </div>
-        )}
-
-        {/* Profiles */}
-        {profiles.length === 0 ? (
-          <div className="text-center text-gray-500 mt-10">
-            Profile Not Found 😢
-          </div>
-        ) : (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {profiles.map((profile) => (
-              <LandscapeCard key={profile.id} profile={profile} />
-            ))}
-          </div>
-        )}
-
-      </div>
+      {/* Profiles */}
+      {profiles.length === 0 ? (
+        <div className="text-center text-gray-500 mt-10">
+          Profile Not Found 😢
+        </div>
+      ) : (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {profiles.map((profile) => (
+            <LandscapeCard key={profile.id} profile={profile} />
+          ))}
+        </div>
+      )}
 
     </div>
   );
