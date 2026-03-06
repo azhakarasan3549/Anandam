@@ -21,9 +21,16 @@ export default function Navbar() {
 
   // Lock body scroll when menu open
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "auto";
-  }, [open]);
+  if (open) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
 
+  return () => {
+    document.body.style.overflow = "auto";
+  };
+}, [open]);
   return (
     <>
       {/* ================= NAVBAR ================= */}
