@@ -23,25 +23,13 @@ export default function Profile() {
 
     let query = supabase.from("profiles").select("*");
 
-    if (search) {
-      query = query.ilike("name", `%${search}%`);
-    }
-
-    if (religion) {
-      query = query.eq("religion", religion);
-    }
-
-    if (age) {
-      query = query.eq("age", Number(age));
-    }
+    if (search) query = query.ilike("name", `%${search}%`);
+    if (religion) query = query.eq("religion", religion);
+    if (age) query = query.eq("age", Number(age));
 
     const { data, error } = await query;
 
-    if (error) {
-      console.log("Error:", error.message);
-    } else {
-      setProfiles(data || []);
-    }
+    if (!error) setProfiles(data || []);
 
     setLoading(false);
   };
@@ -49,33 +37,36 @@ export default function Profile() {
   if (loading) return <SkeletonLoader />;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 overflow-y-auto">
 
       <Header title="Browse Profiles" />
 
       <div className="px-4 py-6">
 
         {/* Search */}
-        <div className="flex items-center gap-3 mb-6">
+        <div className="flex gap-3 mb-6">
+
           <input
             type="text"
             placeholder="Search name..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="flex-1 border px-3 py-2 rounded-lg outline-none"
+            className="flex-1 border px-3 py-2 rounded-lg"
           />
 
           <button
             onClick={() => setShowMore(!showMore)}
-            className="px-3 py-2 bg-gray-100 rounded-lg text-xl hover:bg-gray-200"
+            className="px-3 py-2 bg-gray-100 rounded-lg"
           >
             ⚙️
           </button>
+
         </div>
 
         {/* Filters */}
         {showMore && (
           <div className="flex gap-3 mb-6">
+
             <select
               value={religion}
               onChange={(e) => setReligion(e.target.value)}
@@ -94,12 +85,13 @@ export default function Profile() {
               onChange={(e) => setAge(e.target.value)}
               className="border px-3 py-2 rounded-lg w-24"
             />
+
           </div>
         )}
 
         {/* Profiles */}
         {profiles.length === 0 ? (
-          <div className="text-center text-gray-500 text-xl mt-10">
+          <div className="text-center text-gray-500 mt-10">
             Profile Not Found 😢
           </div>
         ) : (
@@ -111,6 +103,7 @@ export default function Profile() {
         )}
 
       </div>
+
     </div>
   );
 }
