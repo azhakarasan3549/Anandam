@@ -6,6 +6,9 @@ import Profile from "./Pages/Public/Profile.jsx";
 import ProfileDetails from "./Pages/Public/ProfileDetails.jsx";
 
 import AdminRoute from "./Routes/AdminRoute.jsx";
+import ProtectedRoute from "./Routes/ProtectedRoute.jsx";
+import PublicRoute from "./Routes/PublicRoute.jsx";
+
 import AdminDashboard from "./Pages/Admin/AdminDashboard.jsx";
 import AdminProfiles from "./Pages/Admin/AdminProfiles.jsx";
 import EditProfile from "./Pages/Admin/EditProfile.jsx";
@@ -18,12 +21,27 @@ export default function App() {
   //.....
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/profiledetails/:id" element={<ProfileDetails />} />
-      <Route path="/login" element={<Login/>} />
-      <Route path="/signup" element={<Signup/>} />
+      <Route path="/" element={<ProtectedRoute>
+        <Home />
+        </ProtectedRoute>} />
+      <Route path="/contact" element={<ProtectedRoute>
+        <Contact />
+        </ProtectedRoute>} />
+      <Route path="/profile" element={<ProtectedRoute>
+       <Profile />
+        </ProtectedRoute>} />
+      <Route path="/profiledetails/:id" element={<ProtectedRoute>
+       <ProfileDetails />
+        </ProtectedRoute>} />
+      <Route path="/login" element={
+        <PublicRoute>
+           <Login/>
+        </PublicRoute> } />
+      <Route path="/signup" element={
+        <PublicRoute>
+            <Signup/>
+        </PublicRoute>
+      } />
 
       <Route 
       path="/admin/carousel"
