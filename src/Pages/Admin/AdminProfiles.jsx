@@ -44,7 +44,7 @@ export default function AdminProfiles() {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div className="mt-6 bg-white rounded-xl shadow p-4">
+    <div className="mt-6 w-full rounded-2xl p-5 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white shadow-lg">
 
   
       <div className="overflow-x-auto">
@@ -52,7 +52,7 @@ export default function AdminProfiles() {
 
           {/* HEADER */}
           <thead>
-            <tr className="bg-pink-600 text-white">
+            <tr className=" w-full rounded-2xl text-white">
               <th className="p-3 text-left">Photo</th>
               <th className="p-3 text-left">Name</th>
               <th className="p-3 text-center hidden sm:table-cell">Age</th>
@@ -64,7 +64,7 @@ export default function AdminProfiles() {
           {/* BODY */}
           <tbody>
             {profiles.map((p) => (
-              <tr key={p.id} className="hover:bg-gray-50 transition">
+              <tr key={p.id} className="hover:bg-gray-800 transition">
 
                 {/* Photo */}
                 <td className="p-3">
@@ -76,7 +76,7 @@ export default function AdminProfiles() {
                 </td>
 
                 {/* Name */}
-                <td className="p-3 font-semibold text-gray-800">
+                <td className="p-3 font-semibold text-white">
                   {p.name}
                 </td>
 
@@ -98,14 +98,14 @@ export default function AdminProfiles() {
                       to={`/admin/editprofile/${p.id}`}
                       className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-xs"
                     >
-                      ✏️ Edit
+                       Edit
                     </Link>
 
                     <button
                       onClick={() => deleteProfile(p)}
                       className="bg-gray-500 hover:bg-black text-white px-3 py-1 rounded text-xs"
                     >
-                      🗑 Delete
+                       Delete
                     </button>
 
                   </div>
