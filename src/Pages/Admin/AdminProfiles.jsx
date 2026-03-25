@@ -96,14 +96,14 @@ export default function AdminProfiles() {
 
                     <Link
                       to={`/admin/editprofile/${p.id}`}
-                      className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-xs"
+                      className=" bg-white text-black   px-3 py-1 rounded text-xs"
                     >
                        Edit
                     </Link>
 
                     <button
                       onClick={() => deleteProfile(p)}
-                      className="bg-gray-500 hover:bg-black text-white px-3 py-1 rounded text-xs"
+                      className=" bg-white text-black  px-3 py-1 rounded text-xs"
                     >
                        Delete
                     </button>
