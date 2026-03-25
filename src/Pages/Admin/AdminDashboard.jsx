@@ -15,7 +15,7 @@ export default function AdminDashboard() {
     const checkAdmin = async () => {
       const { data } = await supabase.auth.getSession();
       if (!data.session) {
-        navigate("/admin-login");
+        navigate("/login");
       }
     };
     checkAdmin();
@@ -86,14 +86,14 @@ const deleteProfile = async (id, photo_url) => {
       {/* Header */}
        <AdminHeader name="Admin"/>
 
-      <div className="flex justify-evenly">
+      <div className="flex justify-evenly mt-2.5 w-full rounded-2xl p-5 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white shadow-lg">
         {/* Add Profile Button */}
               <Link
-        to="/admin/addprofile"  className="  bg-blue-600 text-white px-4 py-2 rounded mt-4" >
+        to="/admin/addprofile"  className="  bg-white text-black px-4 py-2 rounded mt-4" >
         Add Profile
       </Link>
      
-            <Link to="/admin/carousel" className=" bg-emerald-600 text-white px-4 py-2 rounded mt-4" >
+            <Link to="/admin/carousel" className=" bg-white text-black px-4 py-2 rounded mt-4" >
            Manage Carousel
         </Link>
       </div>
