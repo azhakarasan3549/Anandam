@@ -8,12 +8,13 @@ export default function Navbar() {
   const { user, logout, isAdmin } = useContext(UserProfiles);
   const navigate = useNavigate();
 
-  const handleLogout = async () => {
-    await logout();
-    toast.success("loged out")
-    navigate("/");
-  };
+ const handleLogout = async () => {
+  const { error } = await logout();
 
+  if (!error) {
+    navigate("/login", { replace: true });
+  }
+};
   const profilePhoto =
     user?.user_metadata?.avatar_url ||
     user?.user_metadata?.picture ||

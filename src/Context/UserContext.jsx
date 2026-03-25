@@ -45,10 +45,15 @@ const UserContext = ({ children }) => {
 
   // 🚪 Logout
   const logout = async () => {
-    await supabase.auth.signOut();
+  const { error } = await supabase.auth.signOut();
+
+  if (!error) {
     setUser(null);
     setSession(null);
-  };
+  }
+
+  return { error };
+};
 
   // 👑 Check Admin Role
   const isAdmin = user?.user_metadata?.role === "admin";
