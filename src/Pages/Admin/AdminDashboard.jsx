@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import supabase from "../../DB/Supabaseclient.js";
 import { toast } from "react-toastify";
 import AdminProfiles from "./AdminProfiles.jsx";
+import AdminHeader from "./AdminHeader.jsx";
+
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
@@ -82,16 +84,8 @@ const deleteProfile = async (id, photo_url) => {
     <div className="min-h-screen bg-gray-100 p-4">
 
       {/* Header */}
-      <div className="flex justify-between items-center bg-white p-3 shadow rounded">
-        <h1 className="text-xl font-bold">Admin Dashboard</h1>
-
-        <button
-          onClick={handleLogout}
-          className="bg-red-500 text-white px-3 py-1 rounded"
-        >
-          Logout
-        </button>
-      </div>
+       <AdminHeader name="Admin"/>
+       
       <div className="flex justify-evenly">
         {/* Add Profile Button */}
               <Link
