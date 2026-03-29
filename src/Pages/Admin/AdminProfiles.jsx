@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
 import supabase from "../../DB/Supabaseclient.js";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { Copy } from "lucide-react";
 
 export default function AdminProfiles() {
   const [profiles, setProfiles] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // 🔐 Check admin login..
   useEffect(() => {
     fetchProfiles();
   }, []);
-  
-
 
   const fetchProfiles = async () => {
     const { data } = await supabase.from("profiles").select("*");
@@ -28,10 +27,16 @@ export default function AdminProfiles() {
       await supabase.storage.from("user-image").remove([fileName]);
     }
 
-    // Delete row from table
+    // Delete row
     await supabase.from("profiles").delete().eq("id", profile.id);
 
     fetchProfiles();
+  };
+
+  // ✅ Copy ID
+  const copyId = (id) => {
+    navigator.clipboard.writeText(id);
+    toast.success("ID copied!");
   };
 
   if (loading) return <p>Loading...</p>;
@@ -39,13 +44,12 @@ export default function AdminProfiles() {
   return (
     <div className="mt-6 w-full rounded-2xl p-5 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white shadow-lg">
 
-  
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
 
           {/* HEADER */}
           <thead>
-            <tr className=" w-full rounded-2xl text-white">
+            <tr className="w-full rounded-2xl text-white">
               <th className="p-3 text-left">Photo</th>
               <th className="p-3 text-left">Name</th>
               <th className="p-3 text-center hidden sm:table-cell">Age</th>
@@ -64,7 +68,7 @@ export default function AdminProfiles() {
                   <img
                     src={p.photo_url}
                     alt={p.name}
-                    className="w-12 h-12 object-cover rounded-md "
+                    className="w-12 h-12 object-cover rounded-md"
                   />
                 </td>
 
@@ -78,10 +82,16 @@ export default function AdminProfiles() {
                   {p.age}
                 </td>
 
-                {/* City */}
-                <td className="p-3 hidden sm:table-cell">
-                  {p.id}
-                </td>
+                {/* ❌ Removed ID text → ✅ Copy Button */}
+               <td className="p-3 text-center">
+                      <button
+                        onClick={() => copyId(p.id)}
+                        className="bg-white text-black p-2 rounded"
+                        title="Copy ID"
+                      >
+                        <Copy className="w-4 h-4" />
+                      </button>
+                    </td>
 
                 {/* Actions */}
                 <td className="p-3 text-center">
@@ -89,16 +99,16 @@ export default function AdminProfiles() {
 
                     <Link
                       to={`/admin/editprofile/${p.id}`}
-                      className=" bg-white text-black   px-3 py-1 rounded text-xs"
+                      className="bg-white text-black px-3 py-1 rounded text-xs"
                     >
-                       Edit
+                      Edit
                     </Link>
 
                     <button
                       onClick={() => deleteProfile(p)}
-                      className=" bg-white text-black  px-3 py-1 rounded text-xs"
+                      className="bg-white text-black px-3 py-1 rounded text-xs"
                     >
-                       Delete
+                      Delete
                     </button>
 
                   </div>
