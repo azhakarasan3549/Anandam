@@ -1,20 +1,37 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import { UserProfiles } from "../Context/UserContext";
-import { toast } from "react-toastify";
+import supabase from "../DB/Supabaseclient";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const { user, logout, isAdmin } = useContext(UserProfiles);
+  const { user, logout } = useContext(UserProfiles);
+  const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
 
- const handleLogout = async () => {
-  const { error } = await logout();
+  // ✅ Secure admin check (app_metadata)
+  useEffect(() => {
+    const checkAdmin = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
 
-  if (!error) {
-    navigate("/login", { replace: true });
-  }
-};
+      if (user?.app_metadata?.role === "admin") {
+        setIsAdmin(true);
+      } else {
+        setIsAdmin(false);
+      }
+    };
+
+    checkAdmin();
+  }, []);
+
+  const handleLogout = async () => {
+    const { error } = await logout();
+
+    if (!error) {
+      navigate("/login", { replace: true });
+    }
+  };
+
   const profilePhoto =
     user?.user_metadata?.avatar_url ||
     user?.user_metadata?.picture ||
@@ -22,16 +39,17 @@ export default function Navbar() {
 
   // Lock body scroll when menu open
   useEffect(() => {
-  if (open) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "auto";
-  }
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
 
-  return () => {
-    document.body.style.overflow = "auto";
-  };
-}, [open]);
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [open]);
+
   return (
     <>
       {/* ================= NAVBAR ================= */}
@@ -84,6 +102,7 @@ export default function Navbar() {
                   </span>
                 </div>
 
+                {/* ✅ Admin button (no UI change) */}
                 {isAdmin && (
                   <Link
                     to="/admin"
@@ -122,9 +141,6 @@ export default function Navbar() {
           </button>
         </div>
       </nav>
-
-
-   
 
       {/* ================= MOBILE MENU ================= */}
 
@@ -208,6 +224,7 @@ export default function Navbar() {
                   </span>
                 </div>
 
+                {/* ✅ Admin Mobile (same UI) */}
                 {isAdmin && (
                   <Link
                     onClick={() => setOpen(false)}

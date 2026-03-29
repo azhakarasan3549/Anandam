@@ -6,20 +6,19 @@ export default function AdminRoute({ children }) {
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
 
-  useEffect(() => {
-    const checkAdmin = async () => {
-      const { data } = await supabase.auth.getSession();
-      const user = data.session?.user;
+useEffect(() => {
+  const checkAdmin = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
 
-      if (user?.user_metadata?.role === "admin") {
-        setIsAdmin(true);
-      }
+    if (user?.app_metadata?.role === "admin") {
+      setIsAdmin(true);
+    }
 
-      setLoading(false);
-    };
+    setLoading(false);
+  };
 
-    checkAdmin();
-  }, []);
+  checkAdmin();
+}, []);
 
   if (loading) return <p>Loading...</p>;
 

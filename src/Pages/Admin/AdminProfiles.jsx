@@ -8,13 +8,6 @@ export default function AdminProfiles() {
 
   // 🔐 Check admin login..
   useEffect(() => {
-       const checkAdmin = async () => {
-      const { data } = await supabase.auth.getSession();
-      if (!data.session) {
-        navigate("/admin-login");
-      }
-    };
-    checkAdmin();
     fetchProfiles();
   }, []);
   

@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import supabase from "../../DB/Supabaseclient.js";
 import LandscapeCard from "../../Components/LandscapeCard.jsx";
-import SkeletonLoader from "../../Components/SkeletonLoader.jsx";
 import Header from "../../Components/Header.jsx";
 import { Search, SlidersHorizontal } from "lucide-react";
 
@@ -74,7 +73,7 @@ export default function Profile() {
 
   }, []);
 
-  if (loading) return <SkeletonLoader />;
+ 
 
   return (
     <div className="bg-gray-50 min-h-screen">

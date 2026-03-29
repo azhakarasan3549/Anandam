@@ -5,7 +5,7 @@ export default function Header({ title }) {
   const navigate = useNavigate();
 
   return (
-    <div className="sticky top-0 z-50 bg-white border-b">
+    <div className="sticky top-0 z-50 bg-white ">
       <div className="flex items-center justify-center relative px-4 py-4">
 
         <button
