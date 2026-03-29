@@ -62,14 +62,14 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
-            <Link className="hover:text-pink-100 transition font-medium" to="/">
-              Home
-            </Link>
             <Link className="hover:text-pink-100 transition font-medium" to="/Profile">
               Profiles
             </Link>
             <Link className="hover:text-pink-100 transition font-medium" to="/Contact">
               Contact
+            </Link>
+            <Link className="hover:text-pink-100 transition font-medium" to="/Wishlist">
+              Wishlist
             </Link>
 
             {!user ? (
@@ -175,14 +175,15 @@ export default function Navbar() {
 
           {/* Scrollable Content */}
           <div className="flex-1 overflow-y-auto p-6 space-y-4">
-            <Link onClick={() => setOpen(false)} to="/" className="block font-medium text-lg">
-              Home
-            </Link>
+           
             <Link onClick={() => setOpen(false)} to="/Profile" className="block font-medium text-lg">
               Profiles
             </Link>
             <Link onClick={() => setOpen(false)} to="/Contact" className="block font-medium text-lg">
               Contact
+            </Link>
+            <Link onClick={() => setOpen(false)} to="/Wishlist" className="block font-medium text-lg">
+              Wishlist
             </Link>
 
             <hr />

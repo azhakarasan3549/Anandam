@@ -7,12 +7,15 @@ import "./index.css";
 
 import App from "./App.jsx";
 import UserContext from "./Context/UserContext.jsx";
+import { WishlistProvider } from "./Context/WishlistContext.jsx";
 
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <UserContext>
-      <App />
+      <WishlistProvider>
+        <App />
+      </WishlistProvider>
     </UserContext>
 
     <ToastContainer position="top-right" autoClose={3000} />
