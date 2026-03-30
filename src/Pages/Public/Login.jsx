@@ -6,8 +6,12 @@ import { toast } from "react-toastify";
 
 export default function Login() {
   const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
+
+  // ✅ Separate loading states
+  const [loginLoading, setLoginLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
 
   const [form, setForm] = useState({
     email: "",
@@ -17,9 +21,12 @@ export default function Login() {
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
+  // 🔐 Email Login
   const handleLogin = async (e) => {
     e.preventDefault();
-    setLoading(true);
+
+    if (loginLoading) return; // ✅ prevent double click
+    setLoginLoading(true);
 
     const { error } = await supabase.auth.signInWithPassword({
       email: form.email,
@@ -28,16 +35,20 @@ export default function Login() {
 
     if (error) {
       toast.error(error.message);
-      setLoading(false);
+      setLoginLoading(false);
       return;
     }
 
     toast.success("Login successful");
+
+    // ✅ Single redirect
     navigate("/");
   };
 
+  // 🔐 Google Login
   const handleGoogleLogin = async () => {
-    setLoading(true);
+    if (googleLoading) return; // ✅ prevent double click
+    setGoogleLoading(true);
 
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
@@ -48,7 +59,7 @@ export default function Login() {
 
     if (error) {
       toast.error(error.message);
-      setLoading(false);
+      setGoogleLoading(false);
     }
   };
 
@@ -96,7 +107,7 @@ export default function Login() {
                 type="email"
                 placeholder="example@mail.com"
                 onChange={handleChange}
-                disabled={loading}
+                disabled={loginLoading || googleLoading}
                 className="w-full bg-transparent outline-none text-sm"
                 required
               />
@@ -115,7 +126,7 @@ export default function Login() {
                 type={showPassword ? "text" : "password"}
                 placeholder="Enter your password"
                 onChange={handleChange}
-                disabled={loading}
+                disabled={loginLoading || googleLoading}
                 className="w-full bg-transparent outline-none text-sm"
                 required
               />
@@ -130,24 +141,28 @@ export default function Login() {
           {/* Login Button */}
           <button
             type="submit"
-            disabled={loading}
+            disabled={loginLoading || googleLoading}
             className={`w-full py-2.5 rounded-xl text-sm font-semibold text-white shadow-md transition ${
-              loading ? "bg-gray-400" : "bg-pink-600 hover:bg-pink-700"
+              loginLoading
+                ? "bg-gray-400"
+                : "bg-pink-600 hover:bg-pink-700"
             }`}
           >
-            {loading ? "Logging in..." : "Login →"}
+            {loginLoading ? "Logging in..." : "Login →"}
           </button>
 
           {/* Google Login */}
           <button
             type="button"
             onClick={handleGoogleLogin}
-            disabled={loading}
+            disabled={loginLoading || googleLoading}
             className={`w-full py-2.5 rounded-xl text-sm font-semibold text-white transition ${
-              loading ? "bg-gray-400" : "bg-black hover:bg-gray-900"
+              googleLoading
+                ? "bg-gray-400"
+                : "bg-black hover:bg-gray-900"
             }`}
           >
-            {loading ? "Redirecting..." : "Continue with Google"}
+            {googleLoading ? "Redirecting..." : "Continue with Google"}
           </button>
         </form>
 
