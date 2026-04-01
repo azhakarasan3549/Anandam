@@ -45,7 +45,7 @@ export const WishlistProvider = ({ children }) => {
       toast.error(error.message);
     } else {
       setWishlistIds((prev) => [...prev, profileId]);
-      toast.success(" ❤️");
+    
     }
   };
 
@@ -65,7 +65,7 @@ export const WishlistProvider = ({ children }) => {
       setWishlistIds((prev) =>
         prev.filter((id) => id !== profileId)
       );
-      toast.success("💔");
+   
     }
   };
 

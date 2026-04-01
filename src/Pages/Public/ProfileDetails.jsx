@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import supabase from "../../DB/Supabaseclient.js";
 import { useParams, useNavigate } from "react-router-dom";
 import WhatsAppButton from "../../Components/WhatsAppButton.jsx";
-
+import { toast } from "react-toastify";
 
 export default function ProfileDetails() {
   const { id } = useParams();
@@ -11,11 +11,14 @@ export default function ProfileDetails() {
 
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [liked, setLiked] = useState(false);
 
   useEffect(() => {
     fetchProfile();
+    checkWishlist();
   }, []);
 
+  // 🔹 Fetch profile
   const fetchProfile = async () => {
     const { data, error } = await supabase
       .from("profiles")
@@ -23,28 +26,76 @@ export default function ProfileDetails() {
       .eq("id", id)
       .single();
 
-    if (error) {
-      console.log("Error:", error.message);
-    } else {
-      setProfile(data);
-    }
-
+    if (!error) setProfile(data);
     setLoading(false);
   };
 
-  // ✅ SHARE FUNCTION
+  // 🔹 Check if already in wishlist
+  const checkWishlist = async () => {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) return;
+
+    const { data } = await supabase
+      .from("wishlist")
+      .select("*")
+      .eq("user_id", user.id)
+      .eq("profile_id", id)
+      .single();
+
+    if (data) setLiked(true);
+  };
+
+  // ❤️ Toggle wishlist
+  const toggleWishlist = async () => {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+      toast.error("Please login first");
+      return;
+    }
+
+    if (liked) {
+      // ❌ Remove
+      const { error } = await supabase
+        .from("wishlist")
+        .delete()
+        .eq("user_id", user.id)
+        .eq("profile_id", id);
+
+      if (!error) {
+        setLiked(false);
+      }
+    } else {
+      // ✅ Add
+      const { error } = await supabase.from("wishlist").insert({
+        user_id: user.id,
+        profile_id: id,
+      });
+
+      if (!error) {
+        setLiked(true);
+      }
+    }
+  };
+
+  // 🔗 Share
   const handleShare = async () => {
     if (!profile) return;
 
     if (navigator.share) {
       await navigator.share({
         title: profile.name,
-        text: `Check this matrimonial profile: ${profile.name}`,
+        text: `Check this profile: ${profile.name}`,
         url: window.location.href,
       });
     } else {
       await navigator.clipboard.writeText(window.location.href);
-      alert("Profile link copied!");
+      toast.success("Link copied!");
     }
   };
 
@@ -69,7 +120,7 @@ export default function ProfileDetails() {
         />
       </div>
 
-      {/* PROFILE IMAGE */}
+      {/* IMAGE */}
       <div className="relative">
         <img
           src={profile.photo_url}
@@ -85,7 +136,7 @@ export default function ProfileDetails() {
         )}
       </div>
 
-      {/* INFO CARD */}
+      {/* CARD */}
       <div className="bg-white rounded-t-3xl -mt-6 p-5 relative">
 
         <div className="flex justify-between items-start">
@@ -96,14 +147,24 @@ export default function ProfileDetails() {
             <p className="text-sm text-gray-500">📍 {profile.city}</p>
           </div>
 
-          <div className="bg-pink-100 p-2 rounded-full">
-            <Heart className="text-pink-600 w-5 h-5" />
-          </div>
+          {/* ❤️ WISHLIST BUTTON */}
+          <button
+            onClick={toggleWishlist}
+            className="bg-pink-100 p-2 rounded-full"
+          >
+            <Heart
+              className={`w-5 h-5 ${
+                liked
+                  ? "fill-pink-600 text-pink-600"
+                  : "text-pink-600"
+              }`}
+            />
+          </button>
         </div>
 
         {/* TAGS */}
         <div className="flex flex-wrap gap-2 mt-4">
-          {[profile.height,  profile.languages].map((item, i) => (
+          {[profile.height, profile.languages].map((item, i) => (
             <span key={i} className="bg-gray-100 px-3 py-1 rounded-full text-sm">
               {item}
             </span>
@@ -125,14 +186,14 @@ export default function ProfileDetails() {
           <KeyValue label="Lagnam" value={profile.lagna} />
         </Section>
 
-        {/* WHATSAPP CARD */}
+        {/* WHATSAPP */}
         <div className="bg-pink-50 p-4 rounded-xl mt-6 text-center">
           <h3 className="font-semibold mb-2">
             Interested in {profile.name.split(" ")[0]}?
           </h3>
 
           <p className="text-sm text-gray-600 mb-4">
-            Contact our matrimonial concierge on WhatsApp for full details.
+            Contact on WhatsApp for full details.
           </p>
 
           <div className="flex justify-center">
@@ -144,8 +205,7 @@ export default function ProfileDetails() {
   );
 }
 
-/* ===== REUSABLE COMPONENTS ===== */
-
+/* COMPONENTS */
 function Section({ title, children }) {
   return (
     <div className="mt-6">

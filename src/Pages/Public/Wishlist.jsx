@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import supabase from "../../DB/Supabaseclient";
 import { toast } from "react-toastify";
 import Header from "../../Components/Header";
+import { Link } from "react-router-dom";
+
 
 export default function Wishlist() {
   const [wishlist, setWishlist] = useState([]);
@@ -76,7 +78,7 @@ export default function Wishlist() {
   if (loading) return <p className="text-center mt-10">Loading...</p>;
 
   return (
-    <div className="min-h-screen bg-pink-50 p-4">
+    <div className="min-h-screen bg-pink-50 p-4 ">
         <Header title=" ❤️ My Wishlist" />
 
     
@@ -93,7 +95,7 @@ export default function Wishlist() {
             return (
               <div
                 key={item.id}
-                className="bg-white rounded-2xl shadow p-4 flex gap-4 items-center"
+                className="bg-white rounded-2xl shadow p-4 flex gap-4 items-center mt-1.5"
               >
                 {/* PHOTO */}
                 <img
@@ -120,6 +122,13 @@ export default function Wishlist() {
                 >
                   ❌
                 </button>
+                 <Link
+                                  to={`/profiledetails/${p.id}`}
+                                  className="flex-1 text-center border border-b-emerald-500 text-emerald-500 text-xs font-medium py-2 rounded-lg hover:bg-emerald-50 transition"
+                                >
+                                  View Details
+                                </Link>
+                
               </div>
             );
           })}
