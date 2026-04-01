@@ -136,14 +136,7 @@ export default function Profile() {
         )}
 
         {/* PROFILES */}
-        {profiles.length === 0 ? (
-
-          <div className="text-center text-gray-500 mt-20">
-            Profile Not Found 😢
-          </div>
-
-        ) : (
-
+       
           <div className="space-y-4">
 
             {profiles.map((profile) => (
@@ -155,7 +148,7 @@ export default function Profile() {
 
           </div>
 
-        )}
+       
 
         {/* PAGINATION */}
         <div ref={loaderRef} className="text-center py-10">

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import supabase from "../../DB/Supabaseclient.js";
 import { useParams, useNavigate } from "react-router-dom";
 import WhatsAppButton from "../../Components/WhatsAppButton.jsx";
-import { toast } from "react-toastify";
+import { useWishlist } from "../../Context/WishlistContext";
 
 export default function ProfileDetails() {
   const { id } = useParams();
@@ -11,14 +11,16 @@ export default function ProfileDetails() {
 
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [liked, setLiked] = useState(false);
+
+  // ✅ CONTEXT
+  const { wishlistIds, addToWishlist, removeFromWishlist } = useWishlist();
+
+  const liked = wishlistIds.includes(id); // 🔥 important
 
   useEffect(() => {
     fetchProfile();
-    checkWishlist();
   }, []);
 
-  // 🔹 Fetch profile
   const fetchProfile = async () => {
     const { data, error } = await supabase
       .from("profiles")
@@ -28,59 +30,6 @@ export default function ProfileDetails() {
 
     if (!error) setProfile(data);
     setLoading(false);
-  };
-
-  // 🔹 Check if already in wishlist
-  const checkWishlist = async () => {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    if (!user) return;
-
-    const { data } = await supabase
-      .from("wishlist")
-      .select("*")
-      .eq("user_id", user.id)
-      .eq("profile_id", id)
-      .single();
-
-    if (data) setLiked(true);
-  };
-
-  // ❤️ Toggle wishlist
-  const toggleWishlist = async () => {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    if (!user) {
-      toast.error("Please login first");
-      return;
-    }
-
-    if (liked) {
-      // ❌ Remove
-      const { error } = await supabase
-        .from("wishlist")
-        .delete()
-        .eq("user_id", user.id)
-        .eq("profile_id", id);
-
-      if (!error) {
-        setLiked(false);
-      }
-    } else {
-      // ✅ Add
-      const { error } = await supabase.from("wishlist").insert({
-        user_id: user.id,
-        profile_id: id,
-      });
-
-      if (!error) {
-        setLiked(true);
-      }
-    }
   };
 
   // 🔗 Share
@@ -95,7 +44,7 @@ export default function ProfileDetails() {
       });
     } else {
       await navigator.clipboard.writeText(window.location.href);
-      toast.success("Link copied!");
+      alert("Link copied!");
     }
   };
 
@@ -147,9 +96,13 @@ export default function ProfileDetails() {
             <p className="text-sm text-gray-500">📍 {profile.city}</p>
           </div>
 
-          {/* ❤️ WISHLIST BUTTON */}
+          {/* ❤️ SAME LOGIC AS CARD */}
           <button
-            onClick={toggleWishlist}
+            onClick={() =>
+              liked
+                ? removeFromWishlist(profile.id)
+                : addToWishlist(profile.id)
+            }
             className="bg-pink-100 p-2 rounded-full"
           >
             <Heart
