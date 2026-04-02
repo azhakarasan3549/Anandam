@@ -61,6 +61,7 @@ export default function ProfileCard({ profiles = [] }) {
                 <span className="bg-gray-100 text-xs px-3 py-1 rounded-full">
                   {profile.zodiac_sign}
                 </span>
+                
               </div>
 
               {/* Action Buttons */}

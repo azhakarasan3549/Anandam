@@ -4,7 +4,7 @@ import supabase from "../../DB/Supabaseclient.js";
 import { toast } from "react-toastify";
 import AdminProfiles from "./AdminProfiles.jsx";
 import AdminHeader from "./AdminHeader.jsx";
-import UserCount from "./UserCount.jsx";
+
 
 
 export default function AdminDashboard() {
@@ -97,7 +97,7 @@ const deleteProfile = async (id, photo_url) => {
             <Link to="/admin/carousel" className=" bg-white text-black px-4 py-2 rounded mt-4" >
            Manage Carousel
         </Link>
-             <UserCount/>
+        
 
       </div>
 

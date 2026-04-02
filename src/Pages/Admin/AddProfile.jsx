@@ -20,6 +20,7 @@ export default function AddProfile() {
     college: "",
     income_range: "",
     religion: "",
+    caste: "", // ✅ ADDED
     zodiac_sign: "",
     star: "",
     lagna: "",
@@ -33,8 +34,28 @@ export default function AddProfile() {
   const [imagePreview, setImagePreview] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  // ✅ CAPITALIZE FUNCTION
+  const capitalize = (text) => {
+    if (!text) return "";
+    return text
+      .toLowerCase()
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
+
   const handleChange = (field, value) => {
-    setProfile((prev) => ({ ...prev, [field]: value }));
+    let formattedValue = value;
+
+    // ✅ NAME & CITY → UPPERCASE
+    if (field === "name" || field === "city") {
+      formattedValue = value.toUpperCase();
+    } else {
+      // ✅ OTHER FIELDS → CAPITALIZE
+      formattedValue = capitalize(value);
+    }
+
+    setProfile((prev) => ({ ...prev, [field]: formattedValue }));
   };
 
   const handleImageChange = (e) => {
@@ -167,8 +188,6 @@ export default function AddProfile() {
 
         {/* CONTACT */}
         <Input label="Mobile Number" value={mobile} onChange={setMobile} />
-
-        {/* ✅ TEXTAREA FIX */}
         <TextArea label="Address" value={address} onChange={setAddress} />
 
         {/* OTHER */}
@@ -182,6 +201,10 @@ export default function AddProfile() {
 
         {/* RELIGION */}
         <Input label="Religion" value={profile.religion} onChange={(v) => handleChange("religion", v)} />
+
+        {/* ✅ NEW CASTE FIELD */}
+        <Input label="Caste" value={profile.caste} onChange={(v) => handleChange("caste", v)} />
+
         <Input label="Zodiac Sign" value={profile.zodiac_sign} onChange={(v) => handleChange("zodiac_sign", v)} />
         <Input label="Star" value={profile.star} onChange={(v) => handleChange("star", v)} />
         <Input label="Lagna" value={profile.lagna} onChange={(v) => handleChange("lagna", v)} />

@@ -133,7 +133,14 @@ export default function ProfileDetails() {
 
         {/* FAMILY */}
         <Section title="Family & Lifestyle">
-          <KeyValue label="Religion / Caste" value={profile.religion} />
+              <KeyValue
+                label="Religion / Caste"
+                value={
+                  profile.religion || profile.caste
+                    ? `${profile.religion || ""}${profile.caste ? " / " + profile.caste : ""}`
+                    : "Not mentioned"
+                }
+              />
           <KeyValue label="Zodiac_sign" value={profile.zodiac_sign} />
           <KeyValue label="Star" value={profile.star} />
           <KeyValue label="Lagnam" value={profile.lagna} />
