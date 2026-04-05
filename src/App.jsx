@@ -17,6 +17,7 @@ import AdminCarousel from "./Pages/Admin/AdminCarousel.jsx";
 import Login from "./Pages/Public/Login.jsx";
 import Signup from "./Pages/Public/Signup.jsx";
 import Wishlist from "./Pages/Public/Wishlist.jsx";
+import ViewProfile from "./Pages/Admin/ViewProfile.jsx";
 
 export default function App() {
   //.....
@@ -25,15 +26,19 @@ export default function App() {
       <Route path="/" element={<ProtectedRoute>
         <Home />
         </ProtectedRoute>} />
+
       <Route path="/contact" element={<ProtectedRoute>
         <Contact />
         </ProtectedRoute>} />
+
       <Route path="/Wishlist" element={<ProtectedRoute>
         <Wishlist />
         </ProtectedRoute>} />
+
       <Route path="/profile" element={<ProtectedRoute>
        <Profile />
         </ProtectedRoute>} />
+
       <Route path="/profiledetails/:id" element={<ProtectedRoute>
        <ProfileDetails />
         </ProtectedRoute>} />
@@ -74,12 +79,25 @@ export default function App() {
         }
       />
 
-      <Route path="/admin/profiles" element={ <AdminRoute>
-        <AdminProfiles />
-          </AdminRoute>
-          } />
-<Route path="/admin/editprofile/:id" element={ <AdminRoute>
-  <EditProfile />
+        <Route 
+          path="/admin/profiles"
+          element={
+            <AdminRoute>
+              <AdminProfiles />
+            </AdminRoute>
+           }
+       />
+       
+       <Route path="/viewprofile/:id" element={<AdminRoute>
+       <ViewProfile/>
+        </AdminRoute>} />
+
+
+          <Route 
+          path="/admin/editprofile/:id" 
+          element={
+         <AdminRoute>
+            <EditProfile />
           </AdminRoute>} />
     </Routes>
 

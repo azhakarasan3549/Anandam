@@ -96,6 +96,12 @@ export default function AdminProfiles() {
                 {/* Actions */}
                 <td className="p-3 text-center">
                   <div className="flex gap-2 justify-center">
+                     <Link
+                  to={`/viewprofile/${p.id}`}
+                  className=" bg-white text-black px-3 py-1 rounded text-xs"
+                >
+                 view
+                </Link>
 
                     <Link
                       to={`/admin/editprofile/${p.id}`}
