@@ -39,8 +39,8 @@ export default function Howitswork() {
               className="bg-white rounded-2xl p-5 text-center shadow-sm hover:shadow-md transition"
             >
               {/* Icon */}
-              <div className="mx-auto mb-3 w-14 h-14 rounded-full bg-pink-50 flex items-center justify-center">
-                <Icon className="w-6 h-6 text-pink-600" />
+              <div className="mx-auto mb-3 w-14 h-14 rounded-full bg-emerald-200 flex items-center justify-center">
+                <Icon className="w-6 h-6 text-white text-4xl" />
               </div>
 
               {/* Text */}
