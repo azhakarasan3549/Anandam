@@ -7,7 +7,7 @@ export default function ProfileCard({ profiles = [] }) {
   const { wishlistIds, addToWishlist, removeFromWishlist } = useWishlist();
 
   return (
-    <div className="w-full px-2 py-4">
+    <div className="md:w50 w-full px-2 py-4">
       {profiles.map((profile) => {
         const liked = wishlistIds.includes(profile.id);
 

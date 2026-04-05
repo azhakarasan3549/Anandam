@@ -4,7 +4,7 @@ import Howitswork from "../../Components/Howitswork.jsx";
 import { useContext } from "react";
 import { UserProfiles} from "../../Context/UserContext.jsx"
 import Carousel from "../../Components/Carousel.jsx";
-
+import Cast from "../../Components/Cast.jsx";
 
 const Home = () => {
   const { profiles, loading } = useContext(UserProfiles); 
@@ -37,7 +37,7 @@ const Home = () => {
     </section>
   </div>
 </div>
-
+      <Cast/>
       <Howitswork />
       <Carousel/>
       <Footer />
