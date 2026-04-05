@@ -25,7 +25,7 @@ const Home = () => {
   <div className="relative z-10">
     <Navbar />
 
-    <section className="min-h-[50vh] flex items-center">
+    <section className="min-h-[50vh] md:min-h-[60vh]  flex items-center">
       <div className="max-w-4xl mx-auto text-center px-4">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">
           Find Your Life Partner
