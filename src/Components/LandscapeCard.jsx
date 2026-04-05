@@ -31,10 +31,10 @@ export default function LandscapeCard({ profile }) {
           className="absolute top-4 right-4 bg-white p-2 rounded-full shadow"
         >
           <Heart
-            className={`w-6 h-6 ${
+            className={`w-4 h-4 ${
               liked
-                ? "fill-pink-500 text-pink-500"
-                : "text-gray-400"
+                ? "fill-[#285A48] text-[#285A48]"
+                : "text-[#285A48]"
             }`}
           />
         </button>

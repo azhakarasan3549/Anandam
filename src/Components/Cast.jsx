@@ -14,31 +14,47 @@ const Cast = () => {
         Popular Casts
       </h2>
 
-      {/* Container */}
-      <div   className="bg-white rounded-2xl p-5 text-center shadow-sm hover:shadow-md transition">
-        
-        {/* Chips */}
-        <div className="flex flex-wrap gap-3">
-          {Casts.map((cast, index) => (
-            <span
-              key={index}
-              className="
-                bg-[#408A71] 
-                text-black
-                font-medium
-                text-sm sm:text-base 
-                px-4 py-1.5 
-                rounded-full 
-                hover:bg-[#B0E4CC] 
-                transition
-                cursor-pointer
-              "
-            >
-              {cast}
-            </span>
-          ))}
-        </div>
+      {/* Wrapper with relative positioning */}
+      <div className="relative overflow-hidden">
 
+        {/* SVG with independent opacity */}
+        <img
+          src="/design.svg"
+          className="absolute -z-10 pointer-events-none opacity-50"
+          style={{
+            width: "500px",
+            top: "50%",
+            right: "-50px",
+            transform: "translateY(-50%)",
+          }}
+        />
+
+        {/* Container */}
+        <div className="relative  rounded-2xl p-5 text-center shadow-sm hover:shadow-md transition">
+
+          {/* Chips */}
+          <div className="flex flex-wrap gap-3">
+            {Casts.map((cast, index) => (
+              <span
+                key={index}
+                className="
+                  bg-black
+                  text-white
+                  font-medium
+                  text-sm sm:text-base 
+                  px-4 py-1.5 
+                  rounded-full 
+                  hover:bg-[#B0E4CC] 
+                  transition
+                  cursor-pointer
+                "
+              >
+                {cast}
+              </span>
+            ))}
+          </div>
+
+        </div>
       </div>
     </section>
   );

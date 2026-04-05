@@ -118,9 +118,9 @@ export default function Navbar() {
               </span>
             ) : (
               <div className="space-y-1.5">
-                <div className="w-6 h-0.5 bg-white"></div>
-                <div className="w-6 h-0.5 bg-white"></div>
-                <div className="w-6 h-0.5 bg-white"></div>
+                <div className="w-6 h-0.5 bg-black"></div>
+                <div className="w-6 h-0.5 bg-black"></div>
+                <div className="w-6 h-0.5 bg-black"></div>
               </div>
             )}
           </button>
@@ -138,82 +138,80 @@ export default function Navbar() {
       ></div>
 
       {/* Side Panel */}
-      <div
-        className={`fixed top-4 right-0 w-4/5 max-w-sm h-[50vh] bg-gray-800 text-white z-50 rounded-l-3xl md:hidden overflow-hidden transform transition-transform duration-300 ease-in-out ${
-          open ? "translate-x-0" : "translate-x-full"
-        }`}
+     <div
+  className={`fixed top-4 right-0 w-4/5 max-w-sm h-[50vh] bg-gray-800 text-white z-50 rounded-l-3xl md:hidden overflow-hidden transform transition-transform duration-300 ease-in-out ${
+    open ? "translate-x-0" : "translate-x-full"
+  }`}
+>
+  <div className="flex flex-col h-full">
+
+    {/* ✅ Header with Menu title and X button side by side */}
+    <div className="flex items-center justify-between px-6 pt-5 pb-3 border-b border-gray-600">
+      <span className="text-lg font-semibold">Menu</span>
+      <button
+        onClick={() => setOpen(false)}
+        className="text-2xl font-bold leading-none hover:scale-110 transition text-white"
       >
-        <div className="flex flex-col h-full">
-          
-          {/* Header */}
-          
-         
+        &times;
+      </button>
+    </div>
 
-          {/* Scrollable Content */}
-          <div className="flex-1 overflow-y-auto p-6 space-y-4">
-             <button
-              onClick={() => setOpen(false)}
-              className="text-4xl font-bold leading-none hover:scale-110 transition absolute right-12"
-            >
-              &times;
-            </button>
-           
-            <Link onClick={() => setOpen(false)} to="/Profile" className="block font-medium text-lg">
-              Profiles
-            </Link>
-            <Link onClick={() => setOpen(false)} to="/Contact" className="block font-medium text-lg">
-              Contact
-            </Link>
-            <Link onClick={() => setOpen(false)} to="/Wishlist" className="block font-medium text-lg">
-              Wishlist
-            </Link>
+    {/* Scrollable Content */}
+    <div className="flex-1 overflow-y-auto p-6 space-y-4">
 
-            <hr />
+      <Link onClick={() => setOpen(false)} to="/Profile" className="block font-medium text-lg">
+        Profiles
+      </Link>
+      <Link onClick={() => setOpen(false)} to="/Contact" className="block font-medium text-lg">
+        Contact
+      </Link>
+      <Link onClick={() => setOpen(false)} to="/Wishlist" className="block font-medium text-lg">
+        Wishlist
+      </Link>
 
-           
-              <>
-                <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl">
-                  {profilePhoto ? (
-                    <img
-                      src={profilePhoto}
-                      alt="profile"
-                      className="w-12 h-12 rounded-full "
-                    />
-                  ) : (
-                    <div className="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 font-bold">
-                      {user.user_metadata?.full_name?.charAt(0)}
-                    </div>
-                  )}
-                  <span className="font-bold text-black">
-                    {user.user_metadata?.full_name}
-                  </span>
-                </div>
+      <hr className="border-gray-600" />
 
-                {/* ✅ Admin Mobile (same UI) */}
-                {isAdmin && (
-                  <Link
-                    onClick={() => setOpen(false)}
-                    to="/admin"
-                    className="block w-full text-center py-3 bg-gray-50 text-indigo-700 rounded-xl font-bold"
-                  >
-                    Admin Panel
-                  </Link>
-                )}
-
-                <button
-                  onClick={() => {
-                    handleLogout();
-                    setOpen(false);
-                  }}
-                  className="w-full bg-gray-900 text-white py-3 rounded-xl font-bold"
-                >
-                  Logout
-                </button>
-              </>
-           
-          </div>
+      <>
+        <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl">
+          {profilePhoto ? (
+            <img
+              src={profilePhoto}
+              alt="profile"
+              className="w-12 h-12 rounded-full"
+            />
+          ) : (
+            <div className="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 font-bold">
+              {user.user_metadata?.full_name?.charAt(0)}
+            </div>
+          )}
+          <span className="font-bold text-black">
+            {user.user_metadata?.full_name}
+          </span>
         </div>
-      </div>
+
+        {isAdmin && (
+          <Link
+            onClick={() => setOpen(false)}
+            to="/admin"
+            className="block w-full text-center py-3 bg-gray-50 text-indigo-700 rounded-xl font-bold"
+          >
+            Admin Panel
+          </Link>
+        )}
+
+        <button
+          onClick={() => {
+            handleLogout();
+            setOpen(false);
+          }}
+          className="w-full bg-gray-900 text-white py-3 rounded-xl font-bold"
+        >
+          Logout
+        </button>
+      </>
+    </div>
+  </div>
+</div>
     </>
   );
 }

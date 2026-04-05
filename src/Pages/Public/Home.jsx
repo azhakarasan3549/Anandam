@@ -18,7 +18,7 @@ const Home = () => {
   {/* ✅ Overlay */}
   <div
     className="absolute   bg-no-repeat bg-[length:1500px] inset-0 bg-center opacity-5"
-    style={{ backgroundImage: "url('/design.svg')" }}
+    style={{ backgroundImage: "url('/design2.svg')" }}
   ></div>
 
   {/* ✅ Content */}

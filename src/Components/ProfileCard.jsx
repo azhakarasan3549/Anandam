@@ -7,7 +7,7 @@ export default function ProfileCard({ profiles = [] }) {
   const { wishlistIds, addToWishlist, removeFromWishlist } = useWishlist();
 
   return (
-    <div className="md:w50 w-full px-2 py-4">
+    <div className="md:w-65 w-full px-2 py-4">
       {profiles.map((profile) => {
         const liked = wishlistIds.includes(profile.id);
 
@@ -35,9 +35,9 @@ export default function ProfileCard({ profiles = [] }) {
               >
                 <Heart
                   className={`w-4 h-4 ${
-                    liked
-                      ? "fill-pink-600 text-pink-600"
-                      : "text-pink-600"
+                   liked
+                ? "fill-[#285A48] text-[#285A48]"
+                : "text-[#285A48]"
                   }`}
                 />
               </button>
@@ -68,7 +68,7 @@ export default function ProfileCard({ profiles = [] }) {
               <div className="flex gap-2 mt-3 mb-0.5">
                 <Link
                   to={`/profiledetails/${profile.id}`}
-                  className="flex-1 text-center border border-b-emerald-500 text-emerald-500 text-xs font-medium py-2 rounded-lg hover:bg-emerald-50 transition"
+                  className="flex-1 text-center border border-b-[#285A48] text-[#285A48] text-xs font-medium py-2 rounded-lg hover:bg-emerald-50 transition"
                 >
                   View Details
                 </Link>
