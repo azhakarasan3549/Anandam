@@ -4,7 +4,7 @@ import Howitswork from "../../Components/Howitswork.jsx";
 import { useContext } from "react";
 import { UserProfiles} from "../../Context/UserContext.jsx"
 import Carousel from "../../Components/Carousel.jsx";
-import bg from "../../Asserts/background.svg";
+
 
 const Home = () => {
   const { profiles, loading } = useContext(UserProfiles); 
@@ -13,7 +13,7 @@ const Home = () => {
     < >
      <div
   className="bg-cover bg-center bg-no-repeat"
-  style={{ backgroundImage: `url(${bg})` }}
+  style={{ backgroundImage: `url(/public/background.svg)` }}
 >
       <Navbar />
       {/* Hero */}
