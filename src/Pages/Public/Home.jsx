@@ -13,7 +13,7 @@ const Home = () => {
     < >
      <div
   className="bg-cover bg-center bg-no-repeat"
-  style={{ backgroundImage: `url(/background.svg)` }}
+style={{ backgroundImage: "url('/background.svg')" }}
 >
       <Navbar />
       {/* Hero */}
