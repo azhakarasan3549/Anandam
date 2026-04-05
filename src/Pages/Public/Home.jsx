@@ -4,7 +4,7 @@ import Howitswork from "../../Components/Howitswork.jsx";
 import { useContext } from "react";
 import { UserProfiles} from "../../Context/UserContext.jsx"
 import Carousel from "../../Components/Carousel.jsx";
-import bg from "../../Asserts/background.svg";
+import bg from "../../../Public/assets/background.svg";
 
 const Home = () => {
   const { profiles, loading } = useContext(UserProfiles); 
