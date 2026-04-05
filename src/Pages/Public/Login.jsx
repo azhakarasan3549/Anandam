@@ -67,13 +67,7 @@ export default function Login() {
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
       <div className="w-full max-w-md bg-white rounded-3xl shadow-lg p-6 relative">
 
-        {/* Back Arrow */}
-        <button
-          onClick={() => navigate(-1)}
-          className="absolute left-5 top-5 text-pink-500"
-        >
-          <ArrowLeft size={22} />
-        </button>
+     
 
         {/* Header */}
         <div className="text-center space-y-2">

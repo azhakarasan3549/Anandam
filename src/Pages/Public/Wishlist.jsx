@@ -115,13 +115,7 @@ export default function Wishlist() {
                   </p>
                 </div>
 
-                {/* REMOVE BUTTON */}
-                <button
-                  onClick={() => removeFromWishlist(p.id)}
-                  className="text-red-500 text-xl"
-                >
-                  ❌
-                </button>
+              
                  <Link
                                   to={`/profiledetails/${p.id}`}
                                   className="flex-1 text-center border border-b-emerald-500 text-emerald-500 text-xs font-medium py-2 rounded-lg hover:bg-emerald-50 transition"

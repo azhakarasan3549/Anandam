@@ -103,13 +103,13 @@ export default function ProfileDetails() {
                 ? removeFromWishlist(profile.id)
                 : addToWishlist(profile.id)
             }
-            className="bg-pink-100 p-2 rounded-full"
+            className="bg-gray-100 p-2 rounded-full"
           >
             <Heart
               className={`w-5 h-5 ${
                 liked
-                  ? "fill-pink-600 text-pink-600"
-                  : "text-pink-600"
+                ? "fill-[#285A48] text-[#285A48]"
+                : "text-[#285A48]"
               }`}
             />
           </button>

@@ -8,6 +8,7 @@ export default function Signup() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const[googleLoading, setGoogleLoading] = useState(false);
 
   const [form, setForm] = useState({
     name: "",
@@ -15,6 +16,24 @@ export default function Signup() {
     password: "",
     confirm: "",
   });
+
+    // 🔐 Google Login
+  const handleGoogleLogin = async () => {
+    if (googleLoading) return; // ✅ prevent double click
+    setGoogleLoading(true);
+
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: window.location.origin,
+      },
+    });
+
+    if (error) {
+      toast.error(error.message);
+      setGoogleLoading(false);
+    }
+  };
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -172,6 +191,20 @@ export default function Signup() {
             }`}
           >
             {loading ? "Creating account..." : "Create Account →"}
+          </button>
+
+           {/* Google Login */}
+          <button
+            type="button"
+            onClick={handleGoogleLogin}
+            disabled={ googleLoading}
+            className={`w-full py-2.5 rounded-xl text-sm font-semibold text-white transition ${
+              googleLoading
+                ? "bg-gray-400"
+                : "bg-black hover:bg-gray-900"
+            }`}
+          >
+            {googleLoading ? "Redirecting..." : "Continue with Google"}
           </button>
         </form>
 
