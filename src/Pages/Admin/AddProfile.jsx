@@ -135,10 +135,10 @@ export default function AddProfile() {
   };
 
   return (
-    <div className="min-h-screen bg-pink-50">
+    <div className="min-h-screen bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white ">
 
       {/* HEADER */}
-      <div className="sticky top-0 z-50 flex items-center justify-between bg-white px-4 py-4 shadow-sm">
+      <div className="sticky top-0 z-50 flex items-center justify-between bg-white px-4 text-black py-4 shadow-sm">
         <ArrowLeft
           className="w-5 h-5 cursor-pointer"
           onClick={() => navigate(-1)}
@@ -156,17 +156,17 @@ export default function AddProfile() {
       >
 
         {/* IMAGE */}
-        <label className="block border-2 border-dashed border-pink-300 rounded-2xl p-6 text-center cursor-pointer bg-white">
+        <label className="block border-2 border-dashed border-black rounded-2xl p-6 text-center cursor-pointer bg-white">
           <input type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
 
           {imagePreview ? (
             <img src={imagePreview} className="mx-auto w-32 h-32 rounded-xl object-cover" />
           ) : (
             <>
-              <div className="mx-auto w-16 h-16 rounded-full bg-pink-100 flex items-center justify-center">
-                <Camera className="text-pink-600" />
+              <div className="mx-auto w-16 h-16 rounded-full bg-gray-400 flex items-center justify-center">
+                <Camera className="text-black" />
               </div>
-              <h3 className="mt-3 font-semibold">Upload Profile Photo</h3>
+              <h3 className="mt-3 font-semibold text-black">Upload Profile Photo</h3>
             </>
           )}
         </label>
@@ -212,7 +212,7 @@ export default function AddProfile() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-pink-600 text-white py-3 rounded-xl font-semibold"
+          className="w-full bg-white text-black py-3 rounded-xl font-semibold"
         >
           {loading ? "Saving..." : "Save Profile"}
         </button>

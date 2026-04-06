@@ -8,7 +8,7 @@ const Casts = [
 
 const Cast = () => {
   return (
-    <section className="px-4 sm:px-6 md:px-8 py-8">
+    <section className="px-4 sm:px-6 md:px-8 py-8 ">
       {/* Title */}
       <h2 className="text-xl sm:text-2xl font-semibold mb-6 text-gray-800">
         Popular Casts
@@ -30,7 +30,7 @@ const Cast = () => {
         />
 
         {/* Container */}
-        <div className="relative  rounded-2xl p-5 text-center shadow-sm hover:shadow-md transition">
+        <div className="relative  rounded-2xl p-5 text-center shadow-sm hover:shadow-md  transition">
 
           {/* Chips */}
           <div className="flex flex-wrap gap-3">
@@ -44,7 +44,6 @@ const Cast = () => {
                   text-sm sm:text-base 
                   px-4 py-1.5 
                   rounded-full 
-                  hover:bg-[#B0E4CC] 
                   transition
                   cursor-pointer
                 "

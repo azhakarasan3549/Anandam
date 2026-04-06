@@ -3,6 +3,7 @@ import supabase from "../../DB/Supabaseclient.js";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Copy } from "lucide-react";
+import SkeletonLoder from "../../Components/SkeletonLoader.jsx";
 
 export default function AdminProfiles() {
   const [profiles, setProfiles] = useState([]);
@@ -39,7 +40,7 @@ export default function AdminProfiles() {
     toast.success("ID copied!");
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <SkeletonLoder/>
 
   return (
     <div className="mt-6 w-full rounded-2xl p-5 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white shadow-lg">

@@ -87,12 +87,6 @@ export default function Carousel() {
             modules={[ Autoplay]}
             spaceBetween={5}
             slidesPerView={1.6}
-           
-            breakpoints={{
-              640: { slidesPerView: 1 },
-              768: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
-            }}
           >
             {groupedData[title].map((profile) => (
               <SwiperSlide key={profile.id}>

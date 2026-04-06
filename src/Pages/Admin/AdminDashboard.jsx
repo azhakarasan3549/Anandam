@@ -74,13 +74,6 @@ const deleteProfile = async (id, photo_url) => {
 };
 
 
-
-  // 🚪 Logout
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    navigate("/admin-login");
-  };
-
   return (
     <div className="min-h-screen bg-gray-100 p-4">
 
