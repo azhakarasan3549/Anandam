@@ -135,7 +135,7 @@ export default function AddProfile() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white ">
+    <div className="min-h-screen bg-gradient-to-r bg-gray-50 text-black ">
 
       {/* HEADER */}
       <div className="sticky top-0 z-50 flex items-center justify-between bg-white px-4 text-black py-4 shadow-sm">
@@ -212,7 +212,7 @@ export default function AddProfile() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-white text-black py-3 rounded-xl font-semibold"
+          className="w-full bg-black text-white py-3 rounded-xl font-semibold"
         >
           {loading ? "Saving..." : "Save Profile"}
         </button>
