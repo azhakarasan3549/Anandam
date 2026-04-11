@@ -76,17 +76,21 @@ export default function Signup() {
         {/* Back Arrow */}
         <button
           onClick={() => navigate(-1)}
-          className="absolute left-5 top-5 text-pink-500"
+          className="absolute left-5 top-5 text-black"
         >
           <ArrowLeft size={22} />
         </button>
 
         {/* Header */}
         <div className="text-center space-y-2">
-          <h1 className="text-lg font-semibold text-gray-800">Soulmate</h1>
+      
 
-          <div className="w-16 h-16 mx-auto rounded-full bg-pink-100 flex items-center justify-center text-2xl">
-            ❤️
+          <div className=" mx-auto rounded-full  flex items-center justify-center text-2xl">
+             <img
+              src="/logo-transperent.png"
+              alt="logo"
+              className="h-20 w-22 mix-blend-multiply"
+            />
           </div>
 
           <h2 className="text-2xl font-bold text-gray-900">
@@ -187,7 +191,7 @@ export default function Signup() {
             type="submit"
             disabled={loading}
             className={`w-full py-2.5 rounded-xl text-sm font-semibold text-white shadow-md transition ${
-              loading ? "bg-gray-400" : "bg-pink-600 hover:bg-pink-700"
+              loading ? "bg-gray-400" : "bg-[#408A71] hover:bg-[#408a71cf]"
             }`}
           >
             {loading ? "Creating account..." : "Create Account →"}
@@ -221,7 +225,7 @@ export default function Signup() {
         {/* Login Link */}
         <div className="text-center mt-5 text-sm text-gray-600">
           Already have an account?{" "}
-          <Link to="/login" className="text-pink-600 font-medium">
+          <Link to="/login" className="text-[#408A71] font-medium">
             Log in
           </Link>
         </div>

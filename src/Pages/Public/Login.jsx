@@ -71,10 +71,14 @@ export default function Login() {
 
         {/* Header */}
         <div className="text-center space-y-2">
-          <h1 className="text-lg font-semibold text-gray-800">Soulmate</h1>
+          <h1 className="text-lg font-semibold text-gray-800"></h1>
 
-          <div className="w-16 h-16 mx-auto rounded-full bg-pink-100 flex items-center justify-center text-2xl">
-            ❤️
+          <div className=" mx-auto rounded-full  flex items-center justify-center text-2xl">
+             <img
+              src="/logo-transperent.png"
+              alt="logo"
+              className="h-20 w-22 mix-blend-multiply"
+            />
           </div>
 
           <h2 className="text-2xl font-bold text-gray-900">
@@ -139,7 +143,7 @@ export default function Login() {
             className={`w-full py-2.5 rounded-xl text-sm font-semibold text-white shadow-md transition ${
               loginLoading
                 ? "bg-gray-400"
-                : "bg-pink-600 hover:bg-pink-700"
+                : "bg-[#408A71] hover:bg-[#408a71c8]"
             }`}
           >
             {loginLoading ? "Logging in..." : "Login →"}
@@ -172,7 +176,7 @@ export default function Login() {
         {/* Signup Link */}
         <div className="text-center mt-5 text-sm text-gray-600">
           Don't have an account?{" "}
-          <Link to="/signup" className="text-pink-600 font-medium">
+          <Link to="/signup" className="text-[#408A71] font-medium">
             Sign up
           </Link>
         </div>

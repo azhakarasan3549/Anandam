@@ -56,10 +56,11 @@ export default function Navbar() {
       <nav className="bg-blend-color text-black  top-0 left-0 w-full z-50  h-18">
         <div className="max-w-7xl mx-auto flex justify-between items-center px-6 h-full">
           
-          <h1 className="text-xl font-bold tracking-tight">
-            Matrimony
-          </h1>
-
+          <img
+              src="/logo-transperent.png"
+              alt="logo"
+              className="h-20 w-22 mix-blend-multiply"
+            />
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
             <Link className=" transition font-medium" to="/Profile">
