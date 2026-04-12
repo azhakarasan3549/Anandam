@@ -2,6 +2,7 @@ import { Heart } from "lucide-react";
 import { Link } from "react-router-dom";
 import WhatsAppButton from "./WhatsAppButton.jsx";
 import { useWishlist } from "../Context/WishlistContext";
+import LazyImage from "./LazyImage.jsx";
 
 export default function ProfileCard({ profiles = [] }) {
   const { wishlistIds, addToWishlist, removeFromWishlist } = useWishlist();
@@ -19,9 +20,10 @@ export default function ProfileCard({ profiles = [] }) {
           >
             {/* Image */}
             <div className="relative" style={{ height: "200px" }}>
-              <img
+              <LazyImage
                 src={profile.photo_url}
                 alt={profile.name}
+                wrapperClassName="w-full h-full"
                 className="w-full h-full object-cover object-top"
               />
 
@@ -32,7 +34,7 @@ export default function ProfileCard({ profiles = [] }) {
                     ? removeFromWishlist(profile.id)
                     : addToWishlist(profile.id)
                 }
-                className="absolute top-3 right-3 bg-white p-2 rounded-full shadow hover:scale-110 transition"
+                className="absolute top-3 right-3 bg-white p-2 rounded-full shadow hover:scale-110 transition z-10"
               >
                 <Heart
                   className={`w-4 h-4 ${
@@ -57,12 +59,12 @@ export default function ProfileCard({ profiles = [] }) {
               {/* Tags */}
               <div className="flex flex-wrap gap-1.5 mb-2">
                 {profile.religion && (
-                  <span className="bg-gray-100 text-xs px-2 py-0.5 rounded-full truncate max-w-[90px]">
+                  <span className="bg-gray-100 text-xs px-2 py-0.5 rounded-full truncate max-w-22.5">
                     {profile.religion}
                   </span>
                 )}
                 {profile.zodiac_sign && (
-                  <span className="bg-gray-100 text-xs px-2 py-0.5 rounded-full truncate max-w-[90px]">
+                  <span className="bg-gray-100 text-xs px-2 py-0.5 rounded-full truncate max-w-22.5">
                     {profile.zodiac_sign}
                   </span>
                 )}

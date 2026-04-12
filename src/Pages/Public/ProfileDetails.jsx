@@ -4,6 +4,8 @@ import supabase from "../../DB/Supabaseclient.js";
 import { useParams, useNavigate } from "react-router-dom";
 import WhatsAppButton from "../../Components/WhatsAppButton.jsx";
 import { useWishlist } from "../../Context/WishlistContext";
+import LazyImage from "../../Components/LazyImage.jsx";
+import SkeletonLoder from "../../Components/SkeletonLoader.jsx";
 
 export default function ProfileDetails() {
   const { id } = useParams();
@@ -44,7 +46,7 @@ export default function ProfileDetails() {
     }
   };
 
-  if (loading) return <p className="text-center p-10">Loading...</p>;
+  if (loading) return <SkeletonLoder/>;
   if (!profile) return <p className="text-center p-10">Profile not found</p>;
 
   return (
@@ -69,7 +71,7 @@ export default function ProfileDetails() {
 
           {/* IMAGE */}
           <div className="relative">
-            <img
+            <LazyImage
               src={profile.photo_url}
               alt={profile.name}
               className="w-full h-112.5 object-cover md:h-96"
@@ -181,17 +183,12 @@ export default function ProfileDetails() {
             {/* ✅ LEFT - Full Image */}
             <div className="w-1/2 sticky top-8">
               <div className="relative rounded-2xl overflow-hidden shadow-lg">
-                <img
+                <LazyImage
                   src={profile.photo_url}
                   alt={profile.name}
+                   wrapperClassName="absolute inset-0 w-full h-full"
                   className="w-full h-screen max-h-[80vh] object-cover"
                 />
-                {profile.verified && (
-                  <div className="absolute top-4 right-4 bg-white px-3 py-1 rounded-full text-xs flex items-center gap-1 shadow">
-                    <CheckCircle className="w-4 h-4 text-blue-500" />
-                    VERIFIED
-                  </div>
-                )}
               </div>
             </div>
 
