@@ -1,8 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 
 import { useEffect, useState } from "react";
 import supabase from "../DB/Supabaseclient";
@@ -44,16 +41,10 @@ export default function Carousel() {
       return;
     }
 
-    // Group by title
     const grouped = data.reduce((acc, item) => {
       if (!item.profiles) return acc;
-
-      if (!acc[item.title]) {
-        acc[item.title] = [];
-      }
-
+      if (!acc[item.title]) acc[item.title] = [];
       acc[item.title].push(item.profiles);
-
       return acc;
     }, {});
 
@@ -74,19 +65,39 @@ export default function Carousel() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto px-2 py-10 space-y-12">
+    <div className="max-w-6xl mx-auto px-4 py-10 space-y-12">
       {titles.map((title) => (
         <div key={title}>
-          {/* Title */}
           <h2 className="text-lg font-bold mb-6 text-center">
             {title}
           </h2>
 
-          {/* Swiper for each title */}
           <Swiper
-            modules={[ Autoplay]}
-            spaceBetween={5}
-            slidesPerView={1.6}
+
+            // ✅ slidesPerView + spaceBetween both responsive
+            breakpoints={{
+              0: {
+                slidesPerView: 1.3,
+                spaceBetween: 20,
+              },
+              370: {
+                slidesPerView: 1.5,
+                spaceBetween: 20,
+              },
+              400: {
+                slidesPerView: 1.7,
+                spaceBetween: 20,
+              },
+
+              768: {
+                slidesPerView: 3,        
+                spaceBetween: 20,
+              },
+              1024: {
+                slidesPerView: 4,     
+                spaceBetween: 30,
+              },
+            }}
           >
             {groupedData[title].map((profile) => (
               <SwiperSlide key={profile.id}>

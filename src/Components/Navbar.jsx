@@ -57,7 +57,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto flex justify-between items-center px-6 h-full">
           
           <img
-              src="/logo-transperent.png"
+              src="/pnglogo.png"
               alt="logo"
               className="h-20 w-22 mix-blend-multiply"
             />

@@ -75,7 +75,7 @@ export default function Login() {
 
           <div className=" mx-auto rounded-full  flex items-center justify-center text-2xl">
              <img
-              src="/logo-transperent.png"
+              src="/pnglogo.png"
               alt="logo"
               className="h-20 w-22 mix-blend-multiply"
             />
