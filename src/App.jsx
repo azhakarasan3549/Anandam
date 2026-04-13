@@ -18,6 +18,8 @@ import Login from "./Pages/Public/Login.jsx";
 import Signup from "./Pages/Public/Signup.jsx";
 import Wishlist from "./Pages/Public/Wishlist.jsx";
 import ViewProfile from "./Pages/Admin/ViewProfile.jsx";
+import ResetPassword from "./Pages/Public/Resetpassword.jsx";
+import ForgetPassword from "./Pages/Public/Forgetpassword.jsx";
 
 export default function App() {
   //.....
@@ -43,6 +45,14 @@ export default function App() {
        <ProfileDetails />
         </ProtectedRoute>} />
         
+      <Route path="/reset-password" element={
+        <PublicRoute>
+           <ResetPassword/>
+        </PublicRoute> } />
+      <Route path="/forget-password" element={
+        <PublicRoute>
+           <ForgetPassword/>
+        </PublicRoute> } />
       <Route path="/login" element={
         <PublicRoute>
            <Login/>

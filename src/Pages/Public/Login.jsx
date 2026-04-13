@@ -134,6 +134,12 @@ export default function Login() {
                 onClick={() => setShowPassword(!showPassword)}
               />
             </div>
+            <Link
+                to="/forgot-password"
+                className="text-sm text-gray-500 hover:text-black transition"
+              >
+                Forgot Password?
+              </Link>
           </div>
 
           {/* Login Button */}
