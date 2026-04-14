@@ -135,10 +135,10 @@ export default function Login() {
               />
             </div>
             <Link
-                to="/forgot-password"
+                to="/forget-password"
                 className="text-sm text-gray-500 hover:text-black transition"
               >
-                Forgot Password?
+                Forget Password?
               </Link>
           </div>
 
