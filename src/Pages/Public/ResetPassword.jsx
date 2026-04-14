@@ -1,5 +1,5 @@
 // src/Pages/ResetPassword.jsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import supabase from "../../DB/Supabaseclient";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,21 @@ export default function ResetPassword() {
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [loading, setLoading] = useState(false);
+  const [ready, setReady] = useState(false); // ✅ wait for session
   const navigate = useNavigate();
+
+  // ✅ Capture token from URL and set session
+  useEffect(() => {
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        if (event === "PASSWORD_RECOVERY") {
+          setReady(true); // ✅ session is ready, allow form
+        }
+      }
+    );
+
+    return () => authListener.subscription.unsubscribe();
+  }, []);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -31,11 +45,24 @@ export default function ResetPassword() {
       toast.error(error.message);
     } else {
       toast.success("Password updated successfully! 🎉");
+      await supabase.auth.signOut(); // ✅ sign out after reset
       navigate("/login");
     }
 
     setLoading(false);
   };
+
+  // ✅ Show loading until session is ready
+  if (!ready) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+        <div className="bg-white rounded-2xl shadow-md p-8 w-full max-w-sm text-center">
+          <div className="animate-spin w-8 h-8 border-4 border-black border-t-transparent rounded-full mx-auto mb-4" />
+          <p className="text-sm text-gray-500">Verifying reset link...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
