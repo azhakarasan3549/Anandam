@@ -1,4 +1,3 @@
-// src/Pages/ResetPassword.jsx
 import { useState, useEffect } from "react";
 import supabase from "../../DB/Supabaseclient";
 import { toast } from "react-toastify";

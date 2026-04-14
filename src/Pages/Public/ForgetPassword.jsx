@@ -14,9 +14,8 @@ export default function ForgetPassword() {
     setLoading(true);
 
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: "https://anandam-orpin.vercel.app/reset-password", // ✅ change to your domain in production
-    });
-
+   redirectTo: `${window.location.origin}/reset-password`, // ✅ auto-detects localhost or production
+   });
     if (error) {
       toast.error(error.message);
     } else {
