@@ -3,8 +3,6 @@ import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
-
-
 import App from "./App.jsx";
 import UserContext from "./Context/UserContext.jsx";
 import { WishlistProvider } from "./Context/WishlistContext.jsx";
