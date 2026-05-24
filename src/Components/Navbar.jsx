@@ -164,10 +164,10 @@ export default function Navbar() {
           MOBILE — logo-only top bar (no hamburger)
           Matches your current site header exactly
       ══════════════════════════════════════════════ */}
-      <div className="md:hidden sticky top-0 left-0 right-0 z-40 flex items-center px-4"
+      <div className="md:hidden  top-0 left-0 right-0 z-40 flex items-center px-4"
         style={{ background: "transparent", height: "64px" }}>
         <img src="/pnglogo.png" alt="logo"
-          className="h-14 mix-blend-multiply" />
+          className="h-24 mix-blend-multiply" />
       </div>
 
       {/* ══════════════════════════════════════════════
@@ -339,53 +339,6 @@ export default function Navbar() {
 
         {/* ── Menu rows ── */}
         <div style={{ padding: "0 12px" }}>
-
-          {/* Browse Profiles */}
-          <Link to="/Profile" onClick={() => setSheet(false)}
-            style={{ display: "flex", alignItems: "center", gap: 14,
-              padding: "13px 12px", borderRadius: 16,
-              textDecoration: "none", transition: "background 0.15s" }}
-            onMouseEnter={e => e.currentTarget.style.background = "#f4fdf8"}
-            onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
-            <span style={{
-              width: 40, height: 40, borderRadius: 12,
-              background: "#e8f5f0", border: "1px solid #c8e8dd",
-              display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
-            }}>
-              <SearchIcon active={true} />
-            </span>
-            <div>
-              <p style={{ fontSize: 14, fontWeight: 600, color: "#1a2e26", margin: 0 }}>Browse Profiles</p>
-              <p style={{ fontSize: 11, color: "#9ab8ae", margin: "2px 0 0" }}>Find your perfect match</p>
-            </div>
-            <svg style={{ marginLeft: "auto", flexShrink: 0 }} width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M9 18l6-6-6-6" stroke={GRAY} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </Link>
-
-          {/* Wishlist */}
-          <Link to="/Wishlist" onClick={() => setSheet(false)}
-            style={{ display: "flex", alignItems: "center", gap: 14,
-              padding: "13px 12px", borderRadius: 16,
-              textDecoration: "none", transition: "background 0.15s" }}
-            onMouseEnter={e => e.currentTarget.style.background = "#f4fdf8"}
-            onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
-            <span style={{
-              width: 40, height: 40, borderRadius: 12,
-              background: "#e8f5f0", border: "1px solid #c8e8dd",
-              display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
-            }}>
-              <HeartIcon active={true} />
-            </span>
-            <div>
-              <p style={{ fontSize: 14, fontWeight: 600, color: "#1a2e26", margin: 0 }}>My Wishlist</p>
-              <p style={{ fontSize: 11, color: "#9ab8ae", margin: "2px 0 0" }}>Your saved profiles</p>
-            </div>
-            <svg style={{ marginLeft: "auto", flexShrink: 0 }} width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M9 18l6-6-6-6" stroke={GRAY} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </Link>
-
           {/* Contact */}
           <Link to="/Contact" onClick={() => setSheet(false)}
             style={{ display: "flex", alignItems: "center", gap: 14,
