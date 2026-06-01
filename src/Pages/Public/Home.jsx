@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { UserProfiles} from "../../Context/UserContext.jsx"
 import Carousel from "../../Components/Carousel.jsx";
 import Cast from "../../Components/Cast.jsx";
-import { HeroSection } from "./HeroSection.jsx";
+import HeroSwipeCards from "./HeroSwipeCards.jsx";
 
 
 const Home = () => {
@@ -26,7 +26,7 @@ const Home = () => {
   {/* ✅ Content */}
   <div className="relative z-10">
     <Navbar />
-    <HeroSection/>
+    <HeroSwipeCards/>
 
   </div>
 </div>
