@@ -3,6 +3,7 @@ import supabase from "../../DB/Supabaseclient";
 import { toast } from "react-toastify";
 import Header from "../../Components/Header";
 import { Link } from "react-router-dom";
+import Navbar from "../../Components/Navbar";
 
 
 export default function Wishlist() {
@@ -79,6 +80,7 @@ export default function Wishlist() {
 
   return (
     <div className="min-h-screen bg-pink-50 p-4 ">
+      <Navbar />
         <Header title=" ❤️ My Wishlist" />
 
     

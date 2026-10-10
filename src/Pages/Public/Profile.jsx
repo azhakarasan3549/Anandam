@@ -3,6 +3,7 @@ import supabase from "../../DB/Supabaseclient.js";
 import LandscapeCard from "../../Components/LandscapeCard.jsx";
 import Header from "../../Components/Header.jsx";
 import { Search, SlidersHorizontal } from "lucide-react";
+import Navbar from "../../Components/Navbar.jsx";
 
 export default function Profile() {
 
@@ -77,7 +78,7 @@ export default function Profile() {
 
   return (
     <div className="bg-gray-50 min-h-screen">
-
+       <Navbar/>
       {/* HEADER */}
       <Header title="Browse Profiles" />
 
@@ -162,7 +163,7 @@ export default function Profile() {
         </div>
 
       </div>
-
+     
     </div>
   );
 }

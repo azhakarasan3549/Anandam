@@ -412,9 +412,6 @@ export default function Navbar() {
         </div>
 
       </div>
-
-      {/* Content spacer — keeps page above bottom nav */}
-      <div className="md:hidden" style={{ height: 80 }} />
     </>
   );
 }
