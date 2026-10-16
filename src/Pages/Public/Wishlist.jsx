@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import Header from "../../Components/Header";
 import { Link } from "react-router-dom";
 import Navbar from "../../Components/Navbar";
+import SkeletonLoder from "../../Components/SkeletonLoader";
 
 
 export default function Wishlist() {
@@ -76,15 +77,10 @@ export default function Wishlist() {
     }
   };
 
-  if (loading) return <p className="text-center mt-10">Loading...</p>;
-
+  if (loading) return<SkeletonLoder/>;
   return (
-    <div className="min-h-screen bg-pink-50 p-4 ">
+    <div className="min-h-screen p-4 ">
       <Navbar />
-        <Header title=" ❤️ My Wishlist" />
-
-    
-
       {wishlist.length === 0 ? (
         <p className="text-center text-gray-500">
           No wishlist items yet 😢

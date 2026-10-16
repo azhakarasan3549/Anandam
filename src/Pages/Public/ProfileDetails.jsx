@@ -6,7 +6,7 @@ import WhatsAppButton from "../../Components/WhatsAppButton.jsx";
 import { useWishlist } from "../../Context/WishlistContext";
 import LazyImage from "../../Components/LazyImage.jsx";
 import SkeletonLoder from "../../Components/SkeletonLoader.jsx";
-import Navbar from "../../Components/Navbar.jsx";
+
 
 export default function ProfileDetails() {
   const { id } = useParams();
@@ -53,7 +53,7 @@ export default function ProfileDetails() {
   return (
     
     <div className="bg-gray-50 min-h-screen">
-      <Navbar/>
+   
       {/* HEADER - mobile & tablet only */}
       <div className="lg:hidden flex items-center justify-between p-4 bg-white shadow-sm md:max-w-3xl md:mx-auto md:rounded-b-2xl">
         <ArrowLeft

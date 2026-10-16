@@ -164,11 +164,7 @@ export default function Navbar() {
           MOBILE — logo-only top bar (no hamburger)
           Matches your current site header exactly
       ══════════════════════════════════════════════ */}
-      <div className="md:hidden  top-0 left-0 right-0 z-40 flex items-center px-4"
-        style={{ background: "transparent", height: "64px" }}>
-        <img src="/pnglogo.png" alt="logo"
-          className="h-24 mix-blend-multiply" />
-      </div>
+      
 
       {/* ══════════════════════════════════════════════
           MOBILE BOTTOM NAV BAR
